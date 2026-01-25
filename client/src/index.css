@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* HSL Values for space-separated syntax */
+  
+  /* Background: White */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 11%;
+
+  /* Primary: Bright Blue */
+  --primary: 197 100% 47%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary: Softer Blue-Grey */
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 0 0% 11%;
+
+  /* Accent: Vibrant Purple/Pink for gradients */
+  --accent: 262 83% 58%;
+  --accent-foreground: 0 0% 11%;
+
+  /* Muted: Subtle dividers and text */
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+
+  /* Cards and Surfaces */
+  --card: 222 47% 13%;
+  --card-foreground: 0 0% 11%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 0 0% 11%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 11%;
+
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+  --ring: 197 100% 47%;
+  
+  --radius: 0.75rem;
+
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600;
+  }
+  
+  .glass-card {
+    @apply bg-primary/10 backdrop-blur-lg rounded-2xl border border-primary/20 shadow-xl transition-all duration-300;
+  }
+  .glass-card:hover {
+    @apply border-primary/30 shadow-2xl;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.5);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

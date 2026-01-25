@@ -1,0 +1,81 @@
+
+export type ProjectLevel = {
+  level: number;
+  name: string;
+  path: string;
+  projects: {
+    title: string;
+    imageUrl: string;
+    videoUrl?: string;
+  }[];
+};
+
+export const projectGalleryData: ProjectLevel[] = [
+  {
+    level: 1,
+    name: 'Funtronix',
+    path: '/level-1-projects',
+    projects: [
+      { title: 'Project 1.1', imageUrl: '/robot.png' },
+      { title: 'Project 1.2', imageUrl: '/robot.png' },
+      { title: 'Project 1.3', imageUrl: '/robot.png' },
+    ],
+  },
+  {
+    level: 2,
+    name: 'Robotrix',
+    path: '/level-2-projects',
+    projects: [
+      { title: 'Project 2.1', imageUrl: '/robot.png' },
+      { title: 'Project 2.2', imageUrl: '/robot.png', videoUrl: '#' },
+      { title: 'Project 2.3', imageUrl: '/robot.png' },
+      { title: 'Project 2.4', imageUrl: '/robot.png' },
+    ],
+  },
+  {
+    level: 3,
+    name: 'Solarix',
+    path: '/level-3-projects',
+    projects: [
+        { title: 'Project 3.1', imageUrl: '/robot.png' },
+        { title: 'Project 3.2', imageUrl: '/robot.png' },
+        { title: 'Project 3.3', imageUrl: '/robot.png' },
+    ],
+  },
+  {
+    level: 4,
+    name: 'RoboVi',
+    path: '/level-4-projects',
+    projects: [
+        { title: 'Project 4.1', imageUrl: '/robot.png' },
+        { title: 'Project 4.2', imageUrl: '/robot.png' },
+    ],
+  },
+  {
+    level: 5,
+    name: 'C-Robo',
+    path: '/level-5-projects',
+    projects: [
+        { title: 'Project 5.1', imageUrl: '/robot.png' },
+        { title: 'Project 5.2', imageUrl: '/robot.png' },
+        { title: 'Project 5.3', imageUrl: '/robot.png' },
+    ],
+  },
+  {
+    level: 6,
+    name: 'Embetrix',
+    path: '/level-6-projects',
+    projects: [
+        { title: 'Project 6.1', imageUrl: '/robot.png' },
+        { title: 'Project 6.2', imageUrl: '/robot.png' },
+    ],
+  },
+  {
+    level: 7,
+    name: 'WalkO’Botz',
+    path: '/level-7-projects',
+    projects: [
+        { title: 'Project 7.1', imageUrl: '/robot.png' },
+    ],
+  },
+];
