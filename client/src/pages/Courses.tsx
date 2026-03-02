@@ -1,11 +1,13 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CourseCard } from "@/components/CourseCard";
-import { useCourses } from "@/hooks/use-courses";
+// import { useCourses } from "@/hooks/use-courses"; // No longer needed
 import { motion } from "framer-motion";
 
 export default function Courses() {
-  const { data: courses, isLoading } = useCourses();
+  // Replace backend hook with static empty data for frontend-only
+  const courses = []; // No courses available from backend
+  const isLoading = false; // Data is immediately available (empty)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -33,9 +35,13 @@ export default function Courses() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses?.map((course, idx) => (
-              <CourseCard key={course.id} course={course} index={idx} />
-            ))}
+            {courses?.length === 0 ? (
+                <p className="col-span-full text-center text-muted-foreground">No courses to display.</p>
+            ) : (
+                courses?.map((course, idx) => (
+                    <CourseCard key={course.id} course={course} index={idx} />
+                ))
+            )}
           </div>
         )}
       </main>

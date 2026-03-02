@@ -55,7 +55,7 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
-                <img src="/KR.jpeg" alt="Kreative Robotics Logo" className="w-full h-full object-cover rounded-xl" />
+                <img src="/KR.png" alt="Kreative Robotics Logo" className="w-full h-full object-cover rounded-xl" />
             </div>
             <div className="flex flex-col">
                 <span className="font-display font-bold text-xl tracking-tight">
@@ -106,13 +106,7 @@ export function Navbar() {
         </div>
 
         {/* CTA Button */}
-        <div className="hidden md:flex items-center">
-          <Link href="/contact">
-            <button className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.5)]">
-              Enroll Now
-            </button>
-          </Link>
-        </div>
+
 
 
         {/* Mobile Toggle */}
@@ -142,11 +136,7 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setIsOpen(false)}>
-            <button className="w-full mt-2 px-5 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm">
-              Enroll Now
-            </button>
-          </Link>
+
         </div>
       )}
     </nav>

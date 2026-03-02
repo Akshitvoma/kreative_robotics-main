@@ -34,12 +34,22 @@ export default function ProgramBenefits() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <main className="pt-32 pb-24">
+      <main className="pt-20">
+        {/* Banner Section */}
+        <section
+          className="relative flex items-center justify-center py-40 md:py-56 pt-32"
+        >
+            <img 
+                src="/Banner.png" 
+                alt="Program Benefits Banner" 
+                className="absolute inset-0 w-full h-full object-cover" 
+            />
+        </section>
+
         <div className="container mx-auto px-4 md:px-6">
           {/* Top Introduction Section */}
           <section className="mb-16 md:mb-24">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div className="space-y-4">
+            <div className="flex flex-col items-center text-center space-y-4">
                 <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
                   KREATIVE ROBOTICS is a multi-disciplinary robotics & coding
                   program for{" "}
@@ -63,14 +73,6 @@ export default function ProgramBenefits() {
                   academically, but also practically, preparing them for future
                   success.
                 </p>
-              </div>
-              <div className="flex justify-center">
-                <img
-                  src="/KR.jpeg"
-                  alt="Children working on robotics kits"
-                  className="rounded-lg shadow-xl w-full max-w-md"
-                />
-              </div>
             </div>
           </section>
 
@@ -142,8 +144,7 @@ export default function ProgramBenefits() {
                 </ul>
               </div>
           </section>
-        </div>
-      </main>
+        </div>      </main>
       <Footer />
     </div>
   );

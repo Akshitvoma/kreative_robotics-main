@@ -5,11 +5,17 @@ export default function RoboticsKit() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <main>
+      <main className="pt-20">
         {/* Top hero section */}
         <section
           className="relative flex items-center justify-center py-40 md:py-56 pt-32"
         >
+            <img 
+                src="/Banner.png" 
+                alt="Robotics Kit Banner" 
+                className="absolute inset-0 w-full h-full object-cover" 
+            />
+
         </section>
 
         {/* Intro content section */}

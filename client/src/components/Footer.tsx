@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-              <img src="/KR.jpeg" alt="Kreative Robotics Logo" className="w-8 h-8 rounded-lg object-cover" />
+              <img src="/KR.png" alt="Kreative Robotics Logo" className="w-8 h-8 rounded-lg object-cover" />
               <span className="font-display font-bold text-xl tracking-tight">
                 KREATIVE <span className="text-primary">ROBOTICS</span>
               </span>

@@ -1,43 +1,63 @@
 import { useMutation } from "@tanstack/react-query";
-import { api } from "@shared/routes";
-import { type InsertInquiry } from "@shared/schema";
+// No longer need to import `api` or `@shared/schema` for frontend-only submission
 import { useToast } from "@/hooks/use-toast";
+
+// Define the expected inquiry data structure for the hook
+interface InsertInquiry {
+  name: string;
+  email: string;
+  phone?: string; // Web3Forms will handle optional fields
+  message: string;
+}
 
 export function useCreateInquiry() {
   const { toast } = useToast();
   
   return useMutation({
     mutationFn: async (data: InsertInquiry) => {
-      // Validate first using Zod schema to prevent sending bad data
-      const validated = api.inquiries.create.input.parse(data);
+      // TODO: Replace with your actual Web3Forms Access Key
+      const WEB3FORMS_ACCESS_KEY = "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p"; // THIS IS AN EXAMPLE KEY
+
+      const formData = new FormData();
+      formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("message", data.message);
+      if (data.phone) {
+        formData.append("phone", data.phone);
+      }
       
-      const res = await fetch(api.inquiries.create.path, {
-        method: api.inquiries.create.method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validated),
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
       });
 
       if (!res.ok) {
-        if (res.status === 400) {
-          const error = api.inquiries.create.responses[400].parse(await res.json());
-          throw new Error(error.message);
-        }
-        throw new Error("Failed to submit inquiry");
+        // Web3Forms typically returns 200 even for some errors,
+        // but we'll check res.ok defensively.
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to submit inquiry to Web3Forms");
       }
 
-      return api.inquiries.create.responses[201].parse(await res.json());
+      const result = await res.json();
+      if (result.success === false) {
+        // Web3Forms reports logical errors in the response body
+        throw new Error(result.message || "Failed to submit inquiry to Web3Forms");
+      }
+      
+      return result; // Web3Forms success response
     },
     onSuccess: () => {
       toast({
         title: "Inquiry Received!",
-        description: "We'll get back to you shortly.",
+        description: "Your message has been sent successfully. We'll get back to you shortly.",
         variant: "default",
       });
     },
     onError: (error) => {
       toast({
-        title: "Error",
-        description: error.message,
+        title: "Error Submitting Inquiry",
+        description: error.message || "Please try again later.",
         variant: "destructive",
       });
     },

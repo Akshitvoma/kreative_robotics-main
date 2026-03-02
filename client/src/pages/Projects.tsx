@@ -1,11 +1,13 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProjectCard } from "@/components/ProjectCard";
-import { useProjects } from "@/hooks/use-projects";
+// import { useProjects } from "@/hooks/use-projects"; // No longer needed
 import { motion } from "framer-motion";
 
 export default function Projects() {
-  const { data: projects, isLoading } = useProjects();
+  // Replace backend hook with static empty data for frontend-only
+  const projects = []; // No projects available from backend
+  const isLoading = false; // Data is immediately available (empty)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -33,9 +35,13 @@ export default function Projects() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects?.map((project, idx) => (
-              <ProjectCard key={project.id} project={project} index={idx} />
-            ))}
+            {projects?.length === 0 ? (
+                <p className="col-span-full text-center text-muted-foreground">No projects to display.</p>
+            ) : (
+                projects?.map((project, idx) => (
+                    <ProjectCard key={project.id} project={project} index={idx} />
+                ))
+            )}
           </div>
         )}
       </main>

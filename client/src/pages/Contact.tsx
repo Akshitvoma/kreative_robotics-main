@@ -2,18 +2,31 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
-import { useCreateInquiry } from "@/hooks/use-inquiry";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
+import { z } from "zod"; // Import z for local schema definition
+
+// Define the inquiry schema locally for frontend validation
+const localInsertInquirySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().optional(),
+  message: z.string().min(1, "Message is required"),
+});
+
+// Infer type from the local schema
+type LocalInsertInquiry = z.infer<typeof localInsertInquirySchema>;
+
+import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
-  const mutation = useCreateInquiry();
-  const form = useForm<InsertInquiry>({
-    resolver: zodResolver(insertInquirySchema),
+  const { toast } = useToast();
+  const form = useForm<LocalInsertInquiry>({
+    resolver: zodResolver(localInsertInquirySchema), // Use the local schema
     defaultValues: {
       name: "",
       email: "",
@@ -22,12 +35,46 @@ export default function Contact() {
     },
   });
 
-  const onSubmit = (data: InsertInquiry) => {
-    mutation.mutate(data, {
-      onSuccess: () => {
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (data: LocalInsertInquiry) => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: result.message || "Your message has been successfully sent. We will get back to you shortly.",
+        });
         form.reset();
-      },
-    });
+      } else {
+        console.error("Backend submission error:", result);
+        toast({
+          title: "Submission Failed",
+          description: result.message || "There was an error sending your message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Network error or unexpected issue:", error);
+      toast({
+        title: "Error",
+        description: "A network error occurred. Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,7 +100,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-foreground tracking-wider">Visit Us</h3>
-                  <p className="text-foreground/80">123 Innovation Drive<br />Tech Valley, CA 94043</p>
+                  <p className="text-foreground/80">15-1-44,Srinivasa colony, eye hospital line, Opposite-MGM, Warangal, Telangana</p>
                 </div>
               </div>
 
@@ -63,8 +110,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-foreground tracking-wider">Call Us</h3>
-                  <p className="text-foreground/80">+1 (555) 123-4567</p>
-                  <p className="text-sm text-foreground/60 mt-1">Mon-Fri from 9am to 6pm</p>
+                  <p className="text-foreground/80">+91-91219 00667</p>
                 </div>
               </div>
 
@@ -74,7 +120,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-foreground tracking-wider">Email Us</h3>
-                  <p className="text-foreground/80">kreative.robotics@gmail.com</p>
+                  <p className="text-foreground/80">pathkreative@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -98,7 +144,7 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel className="text-foreground/80">Full Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" className="bg-primary/5 border-primary/10 text-foreground" {...field} />
+                        <Input className="bg-primary/5 border-primary/10 text-foreground" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -113,7 +159,7 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel className="text-foreground/80">Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="john@example.com" className="bg-primary/5 border-primary/10 text-foreground" {...field} />
+                          <Input className="bg-primary/5 border-primary/10 text-foreground" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -127,7 +173,7 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel className="text-foreground/80">Phone Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="+1 (555) 000-0000" className="bg-primary/5 border-primary/10 text-foreground" {...field} value={field.value || ''} />
+                          <Input className="bg-primary/5 border-primary/10 text-foreground" {...field} value={field.value || ''} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -143,7 +189,6 @@ export default function Contact() {
                       <FormLabel className="text-foreground/80">Message</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Tell us about your interests..." 
                           className="bg-primary/5 border-primary/10 text-foreground min-h-[120px]" 
                           {...field} 
                         />
@@ -155,10 +200,10 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={mutation.isPending}
+                  disabled={loading}
                   className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20"
                 >
-                  {mutation.isPending ? "Sending..." : "Send Message"}
+                  {loading ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </Form>

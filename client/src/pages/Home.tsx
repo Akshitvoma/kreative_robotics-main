@@ -40,16 +40,12 @@ export default function Home() {
                 Join the next generation of innovators. Hands-on project based learning in Robotics, and IoT, designed for all ages.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Link href="/programs">
-                  <button className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.6)] hover:-translate-y-1">
-                    Explore Programs
-                  </button>
-                </Link>
                 <Link href="/contact">
-                  <button className="w-full sm:w-auto px-8 py-4 rounded-xl bg-transparent border border-primary text-primary font-bold text-lg hover:bg-primary/10 transition-all hover:-translate-y-1">
-                    Book a Demo
+                  <button className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.6)] hover:-translate-y-1">
+                    Enroll Now
                   </button>
                 </Link>
+
               </div>
             </motion.div>
 
@@ -64,7 +60,7 @@ export default function Home() {
               <div className="relative aspect-square max-w-[500px] mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary to-primary/50 rounded-[3rem] rotate-6 opacity-20 blur-xl" />
                 <img 
-                  src="https://obotz.com/wp-content/uploads/2022/02/banner1-1-815x670.png" 
+                  src="/robot.png" 
                   alt="Futuristic Robot" 
                   className="relative z-10 w-full h-full object-cover rounded-[2.5rem] border border-white/10 shadow-2xl"
                 />

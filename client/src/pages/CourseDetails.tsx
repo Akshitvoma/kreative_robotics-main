@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { useCourse } from "@/hooks/use-courses";
+// import { useCourse } from "@/hooks/use-courses"; // No longer needed
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -8,7 +8,10 @@ import { ArrowLeft, Clock, BarChart, CheckCircle2, DollarSign } from "lucide-rea
 export default function CourseDetails() {
   const [, params] = useRoute("/courses/:id");
   const id = params ? parseInt(params.id) : 0;
-  const { data: course, isLoading } = useCourse(id);
+  // Replace backend hook with static empty data for frontend-only
+  const course = null; // No course available from backend
+  const isLoading = false; // Data is immediately available (empty)
+
 
   if (isLoading) return <div className="min-h-screen bg-background flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" /></div>;
   
