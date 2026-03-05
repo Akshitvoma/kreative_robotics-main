@@ -65,7 +65,6 @@ export function Navbar() {
             <span className="text-[10px] text-foreground/60 tracking-wider uppercase font-medium mt-0.5 whitespace-nowrap">Obotz Warangal</span>
           </div>
         </Link>
-
         {/* Centered Desktop Nav */}
         <div className="hidden md:flex items-center justify-center flex-1 gap-1 lg:gap-2">
           {navLinks.map((link) => {
