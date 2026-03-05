@@ -9,12 +9,12 @@ export default function CourseDetails() {
   const [, params] = useRoute("/courses/:id");
   const id = params ? parseInt(params.id) : 0;
   // Replace backend hook with static empty data for frontend-only
-  const course = null; // No course available from backend
+  const course = null as any; // No course available from backend
   const isLoading = false; // Data is immediately available (empty)
 
 
   if (isLoading) return <div className="min-h-screen bg-background flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" /></div>;
-  
+
   if (!course) return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center">
       <h1 className="text-3xl font-bold mb-4">Course Not Found</h1>
@@ -25,7 +25,7 @@ export default function CourseDetails() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      
+
       {/* Header Image */}
       <div className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10" />
@@ -91,7 +91,7 @@ export default function CourseDetails() {
           <div className="sticky top-24 bg-card border border-border/50 rounded-2xl p-8 shadow-2xl">
             <h3 className="text-2xl font-bold mb-2">{course.price}</h3>
             <p className="text-muted-foreground text-sm mb-6">One-time payment, lifetime access</p>
-            
+
             <Link href="/contact">
               <button className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all mb-4 shadow-lg shadow-primary/20">
                 Enroll Now

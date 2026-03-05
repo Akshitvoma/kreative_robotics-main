@@ -6,16 +6,16 @@ import { motion } from "framer-motion";
 
 export default function Courses() {
   // Replace backend hook with static empty data for frontend-only
-  const courses = []; // No courses available from backend
+  const courses: any[] = []; // No courses available from backend
   const isLoading = false; // Data is immediately available (empty)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      
+
       <main className="pt-32 pb-24 container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-bold mb-4"
@@ -36,11 +36,11 @@ export default function Courses() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses?.length === 0 ? (
-                <p className="col-span-full text-center text-muted-foreground">No courses to display.</p>
+              <p className="col-span-full text-center text-muted-foreground">No courses to display.</p>
             ) : (
-                courses?.map((course, idx) => (
-                    <CourseCard key={course.id} course={course} index={idx} />
-                ))
+              courses?.map((course, idx) => (
+                <CourseCard key={course.id} course={course} index={idx} />
+              ))
             )}
           </div>
         )}

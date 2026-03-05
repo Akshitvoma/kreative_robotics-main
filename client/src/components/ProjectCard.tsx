@@ -1,5 +1,12 @@
-import { type Project } from "@shared/schema";
 import { motion } from "framer-motion";
+
+export interface Project {
+  id: number;
+  title: string;
+  category: string;
+  imageUrl: string;
+  studentName: string;
+}
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   return (

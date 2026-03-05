@@ -1,7 +1,17 @@
-import { type Course } from "@shared/schema";
 import { Link } from "wouter";
 import { Clock, BarChart, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+
+export interface Course {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  imageUrl: string;
+  duration: string;
+  level: string;
+  price: string;
+}
 
 export function CourseCard({ course, index = 0, link }: { course: Course; index?: number, link?: string }) {
   return (
