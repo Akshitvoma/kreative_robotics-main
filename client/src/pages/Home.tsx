@@ -24,7 +24,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -34,7 +34,7 @@ export default function Home() {
                 Future Ready Skills
               </div>
               <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6">
-                Master the Art of <span className="text-gradient">Robotics</span>
+                Where Creativity Meets <span className="text-gradient">Robotics</span>
               </h1>
               <p className="text-foreground/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Join the next generation of innovators. Hands-on project based learning in Robotics, and IoT, designed for all ages.
@@ -49,7 +49,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -59,14 +59,14 @@ export default function Home() {
               {/* robotics tech abstract blue futuristic */}
               <div className="relative aspect-square max-w-[500px] mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary to-primary/50 rounded-[3rem] rotate-6 opacity-20 blur-xl" />
-                <img 
-                  src="/robot.png" 
-                  alt="Futuristic Robot" 
+                <img
+                  src="/robot.png"
+                  alt="Futuristic Robot"
                   className="relative z-10 w-full h-full object-cover rounded-[2.5rem] border border-white/10 shadow-2xl"
                 />
-                
+
                 {/* Floating Badge */}
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute -bottom-8 -left-8 z-20 bg-card/80 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-xl"

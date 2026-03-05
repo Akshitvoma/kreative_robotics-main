@@ -10,19 +10,19 @@ export default function RoboticsKit() {
         <section
           className="relative flex items-center justify-center py-40 md:py-56 pt-32"
         >
-            <img 
-                src="/Banner.png" 
-                alt="Robotics Kit Banner" 
-                className="absolute inset-0 w-full h-full object-cover" 
-            />
+          <img
+            src="/Banner.png"
+            alt="Robotics Kit Banner"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
         </section>
 
         {/* Intro content section */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6 max-w-3xl text-left space-y-6 text-lg text-foreground/80 leading-relaxed">
-            <h1 className="text-4xl md:text-6xl font-semibold text-accent tracking-tight mb-12 text-center">
-              Takeaway Robotics Kits for Kids
+            <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6">
+              Takeaway Robotics Kits <span className="text-gradient">for Kids</span>
             </h1>
             <p>
               Our takeaway robotics kits are designed to bring the world of
