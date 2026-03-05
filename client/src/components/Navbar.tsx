@@ -62,7 +62,7 @@ export function Navbar() {
             <span className="font-display font-bold text-xl tracking-tight leading-none text-foreground">
               KREATIVE <span className="text-primary">ROBOTICS</span>
             </span>
-            <span className="text-[10px] text-foreground/60 tracking-wider Titlercase font-medium mt-0.5 whitespace-nowrap">Obotz Warangal</span>
+            <span className="text-[10px] text-foreground/60 tracking-wider titlecase font-medium mt-0.5 whitespace-nowrap">Obotz Warangal</span>
           </div>
         </Link>
         {/* Centered Desktop Nav */}
