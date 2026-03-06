@@ -120,7 +120,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-foreground tracking-wider">Email Us</h3>
-                  <p className="text-foreground/80">pathkreative@gmail.com</p>
+                  <p className="text-foreground/80">kreativeroboticsteam@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function Contact() {
             className="glass-card p-8"
           >
             <h3 className="text-2xl font-bold mb-6 text-foreground tracking-wider">Send a Message</h3>
-            
+
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
@@ -188,9 +188,9 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel className="text-foreground/80">Message</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          className="bg-primary/5 border-primary/10 text-foreground min-h-[120px]" 
-                          {...field} 
+                        <Textarea
+                          className="bg-primary/5 border-primary/10 text-foreground min-h-[120px]"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
