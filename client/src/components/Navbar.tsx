@@ -13,8 +13,7 @@ export function Navbar() {
   const [mobileProgramOpen, setMobileProgramOpen] = useState(false);
   const [location] = useLocation();
 
-  const openTimeout = useRef<number | null>(null);
-  const closeTimeout = useRef<number | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -29,19 +28,21 @@ export function Navbar() {
     { name: "Contact", href: "/contact" },
   ];
 
-  const handleMouseEnter = () => {
-    if (closeTimeout.current) clearTimeout(closeTimeout.current);
-    openTimeout.current = window.setTimeout(() => {
-      setProgramDropdownVisible(true);
-    }, 150);
-  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setProgramDropdownVisible(false);
+      }
+    };
 
-  const handleMouseLeave = () => {
-    if (openTimeout.current) clearTimeout(openTimeout.current);
-    closeTimeout.current = window.setTimeout(() => {
-      setProgramDropdownVisible(false);
-    }, 400);
-  };
+    if (isProgramDropdownVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProgramDropdownVisible]);
 
   return (
     <nav
@@ -74,10 +75,10 @@ export function Navbar() {
               <div
                 key={link.name}
                 className="relative group"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                ref={dropdownRef}
               >
                 <button
+                  onClick={() => setProgramDropdownVisible(!isProgramDropdownVisible)}
                   className={cn(
                     "px-4 py-2 text-sm font-semibold transition-all duration-300 flex items-center gap-1.5 relative",
                     isProgramDropdownVisible || isActive ? "text-primary" : "text-foreground/70 hover:text-primary"
