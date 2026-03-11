@@ -46,7 +46,11 @@ export default function ThreeDDesigning() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-              <PlaceholderImage alt="Students creating 3D designs" className="w-full h-64" />
+              <img
+                src="/3D.1.jpeg"
+                alt="Students creating 3D designs"
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
               <div>
                 <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
                 <p className="text-foreground/80 leading-relaxed mb-4">
