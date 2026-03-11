@@ -46,38 +46,35 @@ export default function ThreeDDesigning() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-              <PlaceholderImage alt="Students creating 3D designs" className="w-full h-64" />
+              <img
+                src="/3D.jpeg"
+                alt="Students creating 3D designs"
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
               <div>
                 <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
                 <p className="text-foreground/80 leading-relaxed mb-4">
                   We use beginner-friendly yet powerful software to introduce students to the core concepts of 3D design.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-lg text-foreground/80">
+                  <li>Tinkercad for basic modeling</li>
+                  <li>Introduction to Blender for more advanced design</li>
+                  <li>Slicer software for 3D printing preparation</li>
+                  <li>Problem-solving and creative design thinking</li>
+                </ul>
               </div>
-              <img
-                src="/3D.1.jpeg"
-                alt="3D model design"
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
-              />
             </div>
-            <ul className="list-disc list-inside space-y-2 text-lg text-foreground/80">
-              <li>Tinkercad for basic modeling</li>
-              <li>Introduction to Blender for more advanced design</li>
-              <li>Slicer software for 3D printing preparation</li>
-              <li>Problem-solving and creative design thinking</li>
-            </ul>
+
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">Why 3D Designing at Kreative Robotics?</h2>
+              <p className="text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+                Our 3D design course empowers students to turn their ideas into tangible objects. It's a perfect blend of art and engineering that fosters creativity and technical skills. Students will see their digital designs become real objects through 3D printing, a magical and rewarding experience.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">Why 3D Designing at Kreative Robotics?</h2>
-          <p className="text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-            Our 3D design course empowers students to turn their ideas into tangible objects. It's a perfect blend of art and engineering that fosters creativity and technical skills. Students will see their digital designs become real objects through 3D printing, a magical and rewarding experience.
-          </p>
-        </div>
+      </main>
+      <Footer />
     </div>
-        </div >
-      </main >
-    <Footer />
-    </div >
   );
 }
