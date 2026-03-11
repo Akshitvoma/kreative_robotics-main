@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export const levels = [
+const levels = [
   { name: "Level 1: Funtronix", href: "/level/funtronix" },
   { name: "Level 2: RoboTrix", href: "/level/robotrix" },
   { name: "Level 3: Solarix", href: "/level/solarix" },
@@ -14,7 +14,7 @@ export const levels = [
   { name: "Level 7: WalkO’Botz", href: "/level/walkobotz" },
 ];
 
-export const projectGallery = [
+const projectGallery = [
   { name: "Level 1: Funtronix", href: "/projects/level/1" },
   { name: "Level 2: RoboTrix", href: "/projects/level/2" },
   { name: "Level 3: Solarix", href: "/projects/level/3" },
@@ -46,7 +46,7 @@ const Submenu = ({ items }: { items: { name: string; href: string }[] }) => (
   </motion.div>
 );
 
-export function MegaDropdown() {
+function MegaDropdown() {
   const [activeSubmenu, setActiveSubmenu] = useState<"levels" | "gallery" | null>(null);
 
   const leftPanelItemClass = "w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out text-left";
@@ -101,3 +101,5 @@ export function MegaDropdown() {
     </div>
   );
 }
+
+export { levels, projectGallery, MegaDropdown };

@@ -141,9 +141,9 @@ export default function Home() {
           </div>
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center lg:items-start">
             <div className="w-full lg:w-1/2 relative">
-              <div className="relative aspect-video lg:aspect-square w-full bg-primary/10 rounded-2xl overflow-hidden flex items-center justify-center border border-primary/20">
-                <span className="text-foreground/50 font-medium">Image Placeholder</span>
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/5 to-transparent" />
+              <div className="relative aspect-video lg:aspect-square w-full rounded-2xl overflow-hidden flex items-center justify-center border border-primary/20 shadow-2xl">
+                <img src="/STEM.png" alt="STEM Education" className="w-full h-full object-cover" />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
             </div>
             <div className="w-full lg:w-1/2 max-w-2xl lg:max-w-none">
@@ -172,7 +172,7 @@ export default function Home() {
       <section className="py-16 md:py-32 relative overflow-hidden text-center">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-primary/5 blur-[120px] rounded-full" />
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
