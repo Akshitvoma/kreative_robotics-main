@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const levels = [
+export const levels = [
   { name: "Level 1: Funtronix", href: "/level/funtronix" },
   { name: "Level 2: RoboTrix", href: "/level/robotrix" },
   { name: "Level 3: Solarix", href: "/level/solarix" },
@@ -14,7 +14,7 @@ const levels = [
   { name: "Level 7: WalkO’Botz", href: "/level/walkobotz" },
 ];
 
-const projectGallery = [
+export const projectGallery = [
   { name: "Level 1: Funtronix", href: "/projects/level/1" },
   { name: "Level 2: RoboTrix", href: "/projects/level/2" },
   { name: "Level 3: Solarix", href: "/projects/level/3" },

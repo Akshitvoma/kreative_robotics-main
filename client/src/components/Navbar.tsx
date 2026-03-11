@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MegaDropdown } from "./MegaDropdown";
+import { MegaDropdown, levels, projectGallery } from "./MegaDropdown";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -11,6 +11,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isProgramDropdownVisible, setProgramDropdownVisible] = useState(false);
   const [mobileProgramOpen, setMobileProgramOpen] = useState(false);
+  const [mobileLevelsOpen, setMobileLevelsOpen] = useState(false);
+  const [mobileGalleryOpen, setMobileGalleryOpen] = useState(false);
   const [location] = useLocation();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -180,17 +182,71 @@ export function Navbar() {
                       </button>
                       <AnimatePresence>
                         {mobileProgramOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="flex flex-col pl-4 mt-1 border-l-2 border-primary/20 ml-4 gap-1 overflow-hidden"
-                          >
-                            <Link href="/program/overview" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Overview</Link>
-                            <Link href="/program/benefits" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Benefits</Link>
-                            <Link href="/program/robotics-kit" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Robotics Kit</Link>
-                            <Link href="/projects" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Project Gallery</Link>
-                          </motion.div>
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="flex flex-col pl-4 mt-1 border-l-2 border-primary/20 ml-4 gap-1 overflow-hidden"
+                            >
+                              <Link href="/program/overview" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Overview</Link>
+
+                              {/* Nested Levels Menu */}
+                              <div className="flex flex-col">
+                                <button
+                                  onClick={() => setMobileLevelsOpen(!mobileLevelsOpen)}
+                                  className="flex items-center justify-between p-3 text-sm text-foreground/60 hover:text-primary transition-colors"
+                                >
+                                  <span>Levels</span>
+                                  <ChevronDown className={cn("w-3 h-3 transition-transform", mobileLevelsOpen && "rotate-180")} />
+                                </button>
+                                <AnimatePresence>
+                                  {mobileLevelsOpen && (
+                                    <motion.div
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: "auto" }}
+                                      exit={{ opacity: 0, height: 0 }}
+                                      className="flex flex-col pl-4 gap-1 overflow-hidden border-l border-primary/10 ml-2"
+                                    >
+                                      {levels.map((lvl) => (
+                                        <Link key={lvl.name} href={lvl.href} onClick={() => setIsOpen(false)} className="p-2 text-[13px] text-foreground/50 hover:text-primary">
+                                          {lvl.name}
+                                        </Link>
+                                      ))}
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+
+                              <Link href="/program/benefits" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Benefits</Link>
+                              <Link href="/program/robotics-kit" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Robotics Kit</Link>
+
+                              {/* Nested Gallery Menu */}
+                              <div className="flex flex-col">
+                                <button
+                                  onClick={() => setMobileGalleryOpen(!mobileGalleryOpen)}
+                                  className="flex items-center justify-between p-3 text-sm text-foreground/60 hover:text-primary transition-colors"
+                                >
+                                  <span>Project Gallery</span>
+                                  <ChevronDown className={cn("w-3 h-3 transition-transform", mobileGalleryOpen && "rotate-180")} />
+                                </button>
+                                <AnimatePresence>
+                                  {mobileGalleryOpen && (
+                                    <motion.div
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: "auto" }}
+                                      exit={{ opacity: 0, height: 0 }}
+                                      className="flex flex-col pl-4 gap-1 overflow-hidden border-l border-primary/10 ml-2"
+                                    >
+                                      {projectGallery.map((proj) => (
+                                        <Link key={proj.name} href={proj.href} onClick={() => setIsOpen(false)} className="p-2 text-[13px] text-foreground/50 hover:text-primary">
+                                          {proj.name}
+                                        </Link>
+                                      ))}
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+                            </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
