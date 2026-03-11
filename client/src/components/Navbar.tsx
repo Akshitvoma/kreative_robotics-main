@@ -55,24 +55,25 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group cursor-pointer shrink-0">
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
             <img src="/KR.png" alt="Kreative Robotics Logo" className="w-full h-full object-cover rounded-lg md:rounded-xl" />
           </div>
           <div className="flex flex-col">
-            <span className="font-display font-bold text-lg md:text-xl tracking-tight leading-none text-foreground">
+            <span className="font-display font-bold text-lg md:text-xl tracking-tight leading-none text-foreground uppercase">
               KREATIVE <span className="text-primary">ROBOTICS</span>
             </span>
-            <span className="text-[9px] md:text-[10px] text-foreground/60 tracking-wider titlecase font-medium mt-0.5 whitespace-nowrap">Obotz Warangal</span>
+            <span className="text-[10px] text-foreground/60 tracking-wider font-medium mt-0.5 whitespace-nowrap hidden min-[400px]:block">Obotz Warangal</span>
           </div>
         </Link>
-        {/* Centered Desktop Nav */}
-        <div className="hidden md:flex items-center justify-center flex-1 gap-1 lg:gap-2">
+ 
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-1 lg:gap-4 flex-1 justify-center">
           {navLinks.map((link) => {
             const isActive = location === link.href || (link.href === "/programs" && location.startsWith("/program"));
-
+ 
             return link.name === "Program" ? (
               <div
                 key={link.name}
@@ -82,7 +83,7 @@ export function Navbar() {
                 <button
                   onClick={() => setProgramDropdownVisible(!isProgramDropdownVisible)}
                   className={cn(
-                    "px-4 py-2 text-sm font-semibold transition-all duration-300 flex items-center gap-1.5 relative",
+                    "px-3 py-2 text-sm font-semibold transition-all duration-300 flex items-center gap-1 relative",
                     isProgramDropdownVisible || isActive ? "text-primary" : "text-foreground/70 hover:text-primary"
                   )}
                 >
@@ -104,7 +105,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "px-4 py-2 text-sm font-semibold transition-all duration-300 relative",
+                  "px-3 py-2 text-sm font-semibold transition-all duration-300 relative",
                   isActive ? "text-primary" : "text-foreground/70 hover:text-primary"
                 )}
               >
@@ -119,32 +120,29 @@ export function Navbar() {
             );
           })}
         </div>
-
-        {/* Right Action Area */}
-        <div className="flex items-center gap-2 md:gap-4 shrink-0">
-          {/* CTA Button */}
-          <div className="hidden sm:block">
+ 
+        {/* Action Area */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden md:block">
             <Link href="/contact">
-              <Button className="rounded-xl px-4 md:px-6 py-2 h-auto text-sm md:text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all border-none">
+              <Button className="rounded-xl px-4 lg:px-6 py-2 h-auto text-sm lg:text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all border-none">
                 Book a Free Demo
               </Button>
             </Link>
           </div>
-
+ 
           {/* Mobile Toggle */}
-          <div className="md:hidden">
-            <button
-              className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/5 text-primary active:scale-90 transition-transform"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle navigation"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-primary/5 text-primary active:scale-90 transition-transform"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle navigation"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
-
-      {/* Mobile Nav Overlay */}
+ 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -161,7 +159,7 @@ export function Navbar() {
               exit={{ opacity: 0, y: -20, height: 0 }}
               className="md:hidden absolute top-full left-0 w-full bg-background border-b border-border/50 overflow-hidden flex flex-col shadow-2xl z-50"
             >
-              <div className="p-4 flex flex-col gap-2">
+              <div className="p-4 flex flex-col gap-1">
                 {navLinks.map((link) => (
                   link.name === "Program" ? (
                     <div key={link.name} className="flex flex-col">
@@ -182,71 +180,71 @@ export function Navbar() {
                       </button>
                       <AnimatePresence>
                         {mobileProgramOpen && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="flex flex-col pl-4 mt-1 border-l-2 border-primary/20 ml-4 gap-1 overflow-hidden"
-                            >
-                              <Link href="/program/overview" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Overview</Link>
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="flex flex-col pl-4 mt-1 border-l-2 border-primary/20 ml-4 gap-1 overflow-hidden"
+                          >
+                            <Link href="/program/overview" onClick={() => setIsOpen(false)} className="p-2 text-sm text-foreground/60 hover:text-primary">Overview</Link>
+                            
+                            {/* Mobile Levels Submenu */}
+                            <div className="flex flex-col">
+                              <button 
+                                onClick={() => setMobileLevelsOpen(!mobileLevelsOpen)}
+                                className="flex items-center justify-between p-2 text-sm text-foreground/60 hover:text-primary"
+                              >
+                                <span>Levels</span>
+                                <ChevronDown className={cn("w-3 h-3 transition-transform", mobileLevelsOpen && "rotate-180")} />
+                              </button>
+                              <AnimatePresence>
+                                {mobileLevelsOpen && (
+                                  <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="flex flex-col pl-4 gap-1 border-l border-primary/10 ml-2"
+                                  >
+                                    {levels.map((lvl) => (
+                                      <Link key={lvl.name} href={lvl.href} onClick={() => setIsOpen(false)} className="p-1.5 text-[13px] text-foreground/50 hover:text-primary">
+                                        {lvl.name}
+                                      </Link>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
 
-                              {/* Nested Levels Menu */}
-                              <div className="flex flex-col">
-                                <button
-                                  onClick={() => setMobileLevelsOpen(!mobileLevelsOpen)}
-                                  className="flex items-center justify-between p-3 text-sm text-foreground/60 hover:text-primary transition-colors"
-                                >
-                                  <span>Levels</span>
-                                  <ChevronDown className={cn("w-3 h-3 transition-transform", mobileLevelsOpen && "rotate-180")} />
-                                </button>
-                                <AnimatePresence>
-                                  {mobileLevelsOpen && (
-                                    <motion.div
-                                      initial={{ opacity: 0, height: 0 }}
-                                      animate={{ opacity: 1, height: "auto" }}
-                                      exit={{ opacity: 0, height: 0 }}
-                                      className="flex flex-col pl-4 gap-1 overflow-hidden border-l border-primary/10 ml-2"
-                                    >
-                                      {levels.map((lvl) => (
-                                        <Link key={lvl.name} href={lvl.href} onClick={() => setIsOpen(false)} className="p-2 text-[13px] text-foreground/50 hover:text-primary">
-                                          {lvl.name}
-                                        </Link>
-                                      ))}
-                                    </motion.div>
-                                  )}
-                                </AnimatePresence>
-                              </div>
-
-                              <Link href="/program/benefits" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Benefits</Link>
-                              <Link href="/program/robotics-kit" onClick={() => setIsOpen(false)} className="p-3 text-sm text-foreground/60 hover:text-primary transition-colors">Robotics Kit</Link>
-
-                              {/* Nested Gallery Menu */}
-                              <div className="flex flex-col">
-                                <button
-                                  onClick={() => setMobileGalleryOpen(!mobileGalleryOpen)}
-                                  className="flex items-center justify-between p-3 text-sm text-foreground/60 hover:text-primary transition-colors"
-                                >
-                                  <span>Project Gallery</span>
-                                  <ChevronDown className={cn("w-3 h-3 transition-transform", mobileGalleryOpen && "rotate-180")} />
-                                </button>
-                                <AnimatePresence>
-                                  {mobileGalleryOpen && (
-                                    <motion.div
-                                      initial={{ opacity: 0, height: 0 }}
-                                      animate={{ opacity: 1, height: "auto" }}
-                                      exit={{ opacity: 0, height: 0 }}
-                                      className="flex flex-col pl-4 gap-1 overflow-hidden border-l border-primary/10 ml-2"
-                                    >
-                                      {projectGallery.map((proj) => (
-                                        <Link key={proj.name} href={proj.href} onClick={() => setIsOpen(false)} className="p-2 text-[13px] text-foreground/50 hover:text-primary">
-                                          {proj.name}
-                                        </Link>
-                                      ))}
-                                    </motion.div>
-                                  )}
-                                </AnimatePresence>
-                              </div>
-                            </motion.div>
+                            <Link href="/program/benefits" onClick={() => setIsOpen(false)} className="p-2 text-sm text-foreground/60 hover:text-primary">Benefits</Link>
+                            <Link href="/program/robotics-kit" onClick={() => setIsOpen(false)} className="p-2 text-sm text-foreground/60 hover:text-primary">Robotics Kit</Link>
+                            
+                            {/* Mobile Gallery Submenu */}
+                            <div className="flex flex-col">
+                              <button 
+                                onClick={() => setMobileGalleryOpen(!mobileGalleryOpen)}
+                                className="flex items-center justify-between p-2 text-sm text-foreground/60 hover:text-primary"
+                              >
+                                <span>Project Gallery</span>
+                                <ChevronDown className={cn("w-3 h-3 transition-transform", mobileGalleryOpen && "rotate-180")} />
+                              </button>
+                              <AnimatePresence>
+                                {mobileGalleryOpen && (
+                                  <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="flex flex-col pl-4 gap-1 border-l border-primary/10 ml-2"
+                                  >
+                                    {projectGallery.map((proj) => (
+                                      <Link key={proj.name} href={proj.href} onClick={() => setIsOpen(false)} className="p-1.5 text-[13px] text-foreground/50 hover:text-primary">
+                                        {proj.name}
+                                      </Link>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
@@ -256,7 +254,7 @@ export function Navbar() {
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       className={cn(
-                        "text-base font-semibold p-3 rounded-xl transition-all leading-relaxed",
+                        "text-base font-semibold p-3 rounded-xl transition-all",
                         location === link.href ? "bg-primary text-primary-foreground" : "text-foreground/80 hover:bg-primary/10 hover:text-primary"
                       )}
                     >
@@ -264,7 +262,7 @@ export function Navbar() {
                     </Link>
                   )
                 ))}
-                <div className="mt-4 pt-4 border-t border-border/50 sm:hidden">
+                <div className="mt-4 pt-4 border-t border-border/50">
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
                     <Button className="w-full rounded-xl font-bold bg-primary hover:bg-primary/90 text-primary-foreground py-6 border-none text-lg">
                       Book a Free Demo
