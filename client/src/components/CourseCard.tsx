@@ -38,29 +38,29 @@ export function CourseCard({ course, index = 0, link }: { course: Course; index?
           </div>
         )}
 
-        <div className="flex flex-col flex-grow p-6">
-          <h3 className="text-xl font-bold mb-2 text-foreground tracking-wider leading-relaxed group-hover:text-primary transition-colors">
+        <div className="flex flex-col flex-grow p-4 md:p-6">
+          <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground tracking-wider leading-relaxed group-hover:text-primary transition-colors">
             {course.title}
           </h3>
-          <p className="text-foreground/80 text-sm line-clamp-2 mb-6 flex-grow tracking-wide leading-relaxed">
+          <p className="text-foreground/80 text-xs md:text-sm line-clamp-2 mb-4 md:mb-6 flex-grow tracking-wide leading-relaxed">
             {course.description}
           </p>
 
-          <div className="flex items-center gap-4 text-xs font-medium text-foreground/80 mb-6">
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-primary" />
+          <div className="flex items-center gap-3 md:gap-4 text-[10px] md:text-xs font-medium text-foreground/80 mb-4 md:mb-6">
+            <div className="flex items-center gap-1 md:gap-1.5 shrink-0">
+              <Clock className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
               {course.duration}
             </div>
-            <div className="flex items-center gap-1.5">
-              <BarChart className="w-4 h-4 text-primary" />
+            <div className="flex items-center gap-1 md:gap-1.5 shrink-0">
+              <BarChart className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
               {course.level}
             </div>
           </div>
 
           <div className="flex items-center justify-between mt-auto pt-4 border-t border-primary/10">
-            <span className="text-lg font-bold text-foreground">{course.price}</span>
-            <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-              Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <span className="text-base md:text-lg font-bold text-foreground">{course.price}</span>
+            <div className="flex items-center gap-1 md:gap-2 text-primary font-semibold text-xs md:text-sm transition-transform group-hover:translate-x-1">
+              Details <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
             </div>
           </div>
         </div>

@@ -129,46 +129,54 @@ export default function LevelDetails() {
         <div className="min-h-screen bg-background text-foreground">
             <Navbar />
 
-            <main className="pt-32 pb-24 container mx-auto px-4 md:px-6">
+            <main className="pt-24 pb-16 md:pt-32 md:pb-24 container mx-auto px-4 md:px-6">
                 <Link href="/">
-                    <a className="text-sm text-primary hover:underline mb-8 inline-block">&larr; Back to Home</a>
+                    <a className="text-xs md:text-sm text-primary hover:underline mb-6 md:mb-8 inline-block transition-all hover:-translate-x-1">&larr; Back to Home</a>
                 </Link>
-                <div className="flex flex-col lg:flex-row lg:gap-12">
+                <div className="flex flex-col lg:flex-row lg:gap-12 lg:items-start">
                     {/* Left Column: Main Content */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="lg:w-2/3 mb-8 lg:mb-0"
+                        className="lg:w-2/3 mb-10 lg:mb-0"
                     >
-                        <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+                        <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] md:text-xs font-bold uppercase tracking-wider mb-4 md:mb-6">
                             {levelNumber}
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
-                        <p className="text-lg text-foreground/80 leading-relaxed mb-8">
+                        <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight leading-tight">{title}</h1>
+                        <p className="text-base md:text-lg text-foreground/80 leading-relaxed mb-8 md:mb-10">
                             {introSentence}
                         </p>
 
-                        <h2 className="text-3xl font-bold mb-4">
-                            Understanding the <span className="text-primary">World Around Us</span>
-                        </h2>
-                        <p className="text-lg text-foreground/80 leading-relaxed mb-8">
-                            {understandingTheWorld}
-                        </p>
+                        <div className="space-y-10 md:space-y-12">
+                            <section>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight">
+                                    Understanding the <span className="text-primary">World Around Us</span>
+                                </h2>
+                                <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                                    {understandingTheWorld}
+                                </p>
+                            </section>
 
-                        <h2 className="text-3xl font-bold mb-4">
-                            Real-World <span className="text-primary">Applications</span>
-                        </h2>
-                        <p className="text-lg text-foreground/80 leading-relaxed mb-8">
-                            {realWorldApplications}
-                        </p>
+                            <section>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight">
+                                    Real-World <span className="text-primary">Applications</span>
+                                </h2>
+                                <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                                    {realWorldApplications}
+                                </p>
+                            </section>
 
-                        <h2 className="text-3xl font-bold mb-4">
-                            Learning Through <span className="text-primary">Making</span>
-                        </h2>
-                        <p className="text-lg text-foreground/80 leading-relaxed mb-8">
-                            {learningThroughMaking}
-                        </p>
+                            <section>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight">
+                                    Learning Through <span className="text-primary">Making</span>
+                                </h2>
+                                <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                                    {learningThroughMaking}
+                                </p>
+                            </section>
+                        </div>
                     </motion.div>
 
                     {/* Right Column: Key Topics Panel */}
@@ -176,16 +184,16 @@ export default function LevelDetails() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="lg:w-1/3 h-fit"
+                        className="lg:w-1/3 h-fit glass-card p-6 md:p-8"
                     >
-                        <h2 className="text-3xl font-bold mb-6">
+                        <h2 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">
                             Key <span className="text-primary">Topics</span>
                         </h2>
                         <ul className="space-y-6">
                             {keyTopics.map((topic: any, index: number) => (
-                                <li key={index} className="flex flex-col">
-                                    <h3 className="font-bold text-xl text-foreground mb-1">{topic.title}</h3>
-                                    <p className="text-foreground/80 text-sm leading-relaxed">{topic.description}</p>
+                                <li key={index} className="flex flex-col group">
+                                    <h3 className="font-bold text-lg md:text-xl text-foreground mb-1 group-hover:text-primary transition-colors">{topic.title}</h3>
+                                    <p className="text-foreground/80 text-xs md:text-sm leading-relaxed">{topic.description}</p>
                                 </li>
                             ))}
                         </ul>
@@ -197,19 +205,21 @@ export default function LevelDetails() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="glass-card p-8 mt-12 text-center"
+                    className="glass-card p-6 md:p-10 mt-12 md:mt-16 text-center shadow-2xl shadow-primary/10"
                 >
-                    <h2 className="text-3xl font-bold mb-4">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight">
                         Ready to Start Your <span className="text-primary">Journey?</span>
                     </h2>
-                    <p className="text-lg text-foreground/80 leading-relaxed mb-8">
+                    <p className="text-base md:text-lg text-foreground/80 leading-relaxed mb-8 max-w-2xl mx-auto">
                         Take the first step towards becoming a robotics innovator!
                     </p>
-                    <Link href="/contact">
-                        <button className="px-10 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all hover:shadow-lg shadow-primary/25 hover:-translate-y-1">
-                            Enroll in {title}
-                        </button>
-                    </Link>
+                    <div className="flex justify-center">
+                        <Link href="/contact" className="w-full sm:w-auto">
+                            <button className="w-full sm:w-auto px-10 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all hover:shadow-xl shadow-primary/25 hover:-translate-y-1 active:scale-95">
+                                Enroll in {title}
+                            </button>
+                        </Link>
+                    </div>
                 </motion.div>
             </main>
 
