@@ -57,15 +57,17 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group cursor-pointer shrink-0">
-          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
-            <img src="/KR.png" alt="Kreative Robotics Logo" className="w-full h-full object-cover rounded-lg md:rounded-xl" />
+        <Link href="/" className="flex items-center gap-3 group cursor-pointer shrink-0">
+          <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-lg md:rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors overflow-hidden">
+            <img src="/KR.png" alt="Kreative Robotics Logo" className="w-full h-full object-cover" />
           </div>
-          <div className="flex flex-col">
-            <span className="font-display font-bold text-lg md:text-xl tracking-tight leading-none text-foreground uppercase">
+          <div className="flex flex-col justify-center">
+            <span className="font-display font-bold text-lg md:text-xl tracking-tight leading-tight text-foreground uppercase">
               KREATIVE <span className="text-primary">ROBOTICS</span>
             </span>
-            <span className="text-[10px] text-foreground/60 tracking-wider font-medium mt-0.5 whitespace-nowrap hidden min-[400px]:block">Obotz Warangal</span>
+            <span className="text-[10px] md:text-xs text-foreground/60 tracking-wider font-medium whitespace-nowrap hidden min-[400px]:block leading-tight">
+              Obotz Warangal
+            </span>
           </div>
         </Link>
  
