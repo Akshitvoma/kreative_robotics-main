@@ -26,7 +26,11 @@ export default function ThreeDDesigning() {
                   3D designing is like sculpting with digital clay. It's the process of creating objects in a computer that have height, width, and depth. From video game characters to custom phone cases and robot parts, 3D design is used to create the world around us.
                 </p>
               </div>
-              <PlaceholderImage alt="3D model design" className="w-full h-64" />
+              <img 
+                src="/3D.jpeg" 
+                alt="3D model design" 
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
             </div>
 
             <div className="mb-16">
