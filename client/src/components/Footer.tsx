@@ -15,11 +15,22 @@ export function Footer() {
               <span className="text-xs text-foreground/80 -mt-1 leading-relaxed">Obotz Warangal</span>
             </Link>
             <p className="text-foreground/80 text-sm leading-relaxed">
-              Empowering the next generation of innovators through hands-on robotics, AI, and IoT education.
+              Empowering the next generation of innovators through hands-on robotics and IoT education.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-foreground/80 hover:text-primary hover:bg-primary/10 transition-all">
+              {[
+                { Icon: Facebook, href: "https://www.facebook.com/kreativerobotics/" },
+                { Icon: Twitter, href: "#" },
+                { Icon: Instagram, href: "#" },
+                { Icon: Linkedin, href: "#" },
+              ].map(({ Icon, href }, i) => (
+                <a 
+                  key={i} 
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-foreground/80 hover:text-primary hover:bg-primary/10 transition-all"
+                >
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
