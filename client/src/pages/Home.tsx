@@ -73,7 +73,7 @@ export default function Home() {
                       <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="font-bold text-base md:text-lg text-white">100+</p>
+                      <p className="font-bold text-base md:text-lg text-white">300+</p>
                       <p className="text-[10px] md:text-xs text-white">Students Certified</p>
                     </div>
                   </div>
