@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Cpu, Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Cpu, Facebook, Instagram, Youtube, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -20,12 +20,11 @@ export function Footer() {
             <div className="flex gap-4">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/kreativerobotics/" },
-                { Icon: Twitter, href: "#" },
-                { Icon: Instagram, href: "#" },
-                { Icon: Linkedin, href: "#" },
+                { Icon: Instagram, href: "https://www.instagram.com/kreative_robotics/" },
+                { Icon: Youtube, href: "https://www.youtube.com/@kreativeroboticsobotzwarangal" },
               ].map(({ Icon, href }, i) => (
-                <a 
-                  key={i} 
+                <a
+                  key={i}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
