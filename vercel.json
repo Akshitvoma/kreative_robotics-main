@@ -1,7 +1,6 @@
 {
     "version": 2,
-    "framework": "vite",
-    "outputDirectory": "client/dist",
+    "outputDirectory": "dist",
     "rewrites": [
         {
             "source": "/api/(.*)",
@@ -13,4 +12,5 @@
         }
     ],
     "cleanUrls": true
-}
+}
+
