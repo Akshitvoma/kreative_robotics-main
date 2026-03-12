@@ -92,7 +92,11 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16 text-center md:text-left">
             <div className="relative">
               <p className="text-xs md:text-sm uppercase tracking-widest text-primary mb-2">Comprehensive Curriculum</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">Kreative <span className="text-primary">Robotics</span></h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white flex items-center justify-center md:justify-start gap-4 flex-wrap">
+                Kreative 
+                <img src="/ROBO.png" alt="Robo Mascot" className="w-12 h-12 md:w-16 md:h-16 object-contain" />
+                <span className="text-primary">Robotics</span>
+              </h2>
               <p className="text-base md:text-lg text-gray-400 mt-2">7-Level Program</p>
             </div>
             <Link href="/program/overview">

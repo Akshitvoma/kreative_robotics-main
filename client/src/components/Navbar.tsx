@@ -70,12 +70,12 @@ export function Navbar() {
             </span>
           </div>
         </Link>
- 
+
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1 lg:gap-4 flex-1 justify-center">
           {navLinks.map((link) => {
             const isActive = location === link.href || (link.href === "/programs" && location.startsWith("/program"));
- 
+
             return link.name === "Program" ? (
               <div
                 key={link.name}
@@ -122,7 +122,7 @@ export function Navbar() {
             );
           })}
         </div>
- 
+
         {/* Action Area */}
         <div className="flex items-center gap-2 shrink-0">
           <div className="hidden md:block">
@@ -132,7 +132,7 @@ export function Navbar() {
               </Button>
             </Link>
           </div>
- 
+
           {/* Mobile Toggle */}
           <button
             className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-primary/5 text-primary active:scale-90 transition-transform"
@@ -143,7 +143,7 @@ export function Navbar() {
           </button>
         </div>
       </div>
- 
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -189,10 +189,10 @@ export function Navbar() {
                             className="flex flex-col pl-4 mt-1 border-l-2 border-primary/20 ml-4 gap-1 overflow-hidden"
                           >
                             <Link href="/program/overview" onClick={() => setIsOpen(false)} className="p-2 text-sm text-foreground/60 hover:text-primary">Overview</Link>
-                            
+
                             {/* Mobile Levels Submenu */}
                             <div className="flex flex-col">
-                              <button 
+                              <button
                                 onClick={() => setMobileLevelsOpen(!mobileLevelsOpen)}
                                 className="flex items-center justify-between p-2 text-sm text-foreground/60 hover:text-primary"
                               >
@@ -219,10 +219,10 @@ export function Navbar() {
 
                             <Link href="/program/benefits" onClick={() => setIsOpen(false)} className="p-2 text-sm text-foreground/60 hover:text-primary">Benefits</Link>
                             <Link href="/program/robotics-kit" onClick={() => setIsOpen(false)} className="p-2 text-sm text-foreground/60 hover:text-primary">Robotics Kit</Link>
-                            
+
                             {/* Mobile Gallery Submenu */}
                             <div className="flex flex-col">
-                              <button 
+                              <button
                                 onClick={() => setMobileGalleryOpen(!mobileGalleryOpen)}
                                 className="flex items-center justify-between p-2 text-sm text-foreground/60 hover:text-primary"
                               >
