@@ -89,18 +89,16 @@ export default function Home() {
       {/* 7-Level Program Section */}
       <section className="py-16 md:py-24 bg-gray-900 text-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16 text-center md:text-left">
+          <div className="flex flex-col items-center gap-6 mb-12 md:mb-16 text-center">
             <div className="relative">
               <p className="text-xs md:text-sm uppercase tracking-widest text-primary mb-2">Comprehensive Curriculum</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white flex items-center justify-center md:justify-start gap-4 flex-wrap">
-                Kreative 
-                <img src="/ROBO.png" alt="Robo Mascot" className="w-12 h-12 md:w-16 md:h-16 object-contain" />
-                <span className="text-primary">Robotics</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+                Kreative <span className="text-primary">Robotics</span>
               </h2>
               <p className="text-base md:text-lg text-gray-400 mt-2">7-Level Program</p>
             </div>
             <Link href="/program/overview">
-              <button className="mx-auto md:mx-0 w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center text-[10px] md:text-xs font-bold uppercase hover:bg-primary hover:text-white transition-all active:scale-95 shrink-0">
+              <button className="mx-auto w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center text-[10px] md:text-xs font-bold uppercase hover:bg-primary hover:text-white transition-all active:scale-95 shrink-0 mt-4">
                 More Info
               </button>
             </Link>
