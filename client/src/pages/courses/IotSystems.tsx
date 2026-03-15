@@ -27,7 +27,7 @@ export default function IotSystems() {
                 </p>
               </div>
               <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-white/5">
-                <img src="/IoT.jpeg" alt="IoT devices connecting" className="w-full h-auto object-contain p-2" />
+                <img src="/IoT.png" alt="IoT devices connecting" className="w-full h-auto object-contain p-2" />
               </div>
             </div>
 
@@ -44,7 +44,7 @@ export default function IotSystems() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-              <img src="/ESP32.png" alt="ESP32 Development Board" className="w-full h-auto max-h-80 rounded-2xl object-contain shadow-2xl bg-white/5 p-4" />
+              <img src="/Esp.webp" alt="ESP32 Development Board" className="w-full h-auto max-h-80 rounded-2xl object-contain shadow-2xl bg-white/5 p-4" />
               <div>
                 <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
                 <p className="text-foreground/80 leading-relaxed mb-4">
