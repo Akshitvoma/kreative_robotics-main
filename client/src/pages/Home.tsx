@@ -146,8 +146,8 @@ export default function Home() {
           </div>
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center lg:items-stretch">
             <div className="w-full lg:w-1/2 relative">
-              <div className="relative aspect-video lg:aspect-auto lg:h-full w-full rounded-2xl overflow-hidden flex items-center justify-center border border-primary/20 shadow-2xl min-h-[300px] md:min-h-[400px]">
-                <img src="/STEM.jpeg" alt="STEM Education" className="w-full h-full object-cover" />
+              <div className="relative aspect-video lg:aspect-auto lg:h-full w-full rounded-2xl overflow-hidden flex items-center justify-center border border-primary/20 shadow-2xl min-h-[300px] md:min-h-[400px] bg-background">
+                <img src="/STEM.jpeg" alt="STEM Education" className="w-full h-full object-contain p-4" />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
             </div>
