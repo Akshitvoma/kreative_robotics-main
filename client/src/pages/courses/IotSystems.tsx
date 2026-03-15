@@ -26,7 +26,9 @@ export default function IotSystems() {
                   The Internet of Things (IoT) is a network of physical objects—"things"—that are embedded with sensors, software, and other technologies for the purpose of connecting and exchanging data with other devices and systems over the internet.
                 </p>
               </div>
-              <img src="/IoT.jpeg" alt="IoT devices connecting" className="w-full h-auto max-h-80 rounded-2xl object-cover shadow-2xl" />
+              <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-white/5">
+                <img src="/IoT.jpeg" alt="IoT devices connecting" className="w-full h-auto object-contain p-2" />
+              </div>
             </div>
 
             <div className="mb-16">
