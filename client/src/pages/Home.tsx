@@ -144,11 +144,15 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Why <span className="text-primary">Kreative Robotics</span></h2>
             <p className="text-base md:text-lg text-foreground/80">It Develops In-Demand Skills in Children</p>
           </div>
-          <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center lg:items-stretch">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
             <div className="w-full lg:w-1/2 relative">
-              <div className="relative aspect-video lg:aspect-auto lg:h-full w-full rounded-2xl overflow-hidden flex items-center justify-center border border-primary/20 shadow-2xl min-h-[300px] md:min-h-[400px] bg-background">
-                <img src="/STEM.jpeg" alt="STEM Education" className="w-full h-full object-contain p-4" />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
+              <div className="relative w-full rounded-2xl overflow-hidden border border-primary/20 shadow-2xl bg-background">
+                <img 
+                  src="/STEM.jpeg" 
+                  alt="STEM Education" 
+                  className="w-full h-auto object-contain" 
+                />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
             </div>
             <div className="w-full lg:w-1/2 max-w-2xl lg:max-w-none">
