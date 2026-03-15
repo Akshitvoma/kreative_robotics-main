@@ -57,7 +57,7 @@ export default function Home() {
               <div className="relative aspect-square">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary to-primary/50 rounded-3xl md:rounded-[3rem] rotate-6 opacity-20 blur-xl" />
                 <img
-                  src="/ROBO.png"
+                  src="/robot.png"
                   alt="Futuristic Robot"
                   className="relative z-10 w-full h-full object-cover rounded-3xl md:rounded-[2.5rem] border border-white/10 shadow-2xl"
                 />
