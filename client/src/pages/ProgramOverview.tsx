@@ -74,7 +74,7 @@ export default function ProgramOverview() {
                   <img src="/Overview 1.JPG" alt="Overview 1" className="w-full h-full object-cover" />
                 </div>
                 <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden border-4 border-blue-500">
-                  <img src="/Overview.jpg" alt="Overview 5" className="w-full h-full object-cover" />
+                  <img src="/Overview.JPG" alt="Overview 5" className="w-full h-full object-cover" />
                 </div>
                 <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden">
                   <img src="/Overview 2.JPG" alt="Overview 2" className="w-full h-full object-cover" />
