@@ -21,8 +21,8 @@ export default function PcbDesigning() {
                   PCB designing is the art of creating a map that connects electronic components. Think of it like a city plan for electricity! Instead of roads, we create copper pathways for electricity to follow, connecting everything from tiny lights to powerful computer chips.
                 </p>
               </div>
-              <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden relative">
-                <img src="/pcb1.jpg" alt="PCB layout design" className="w-full h-full object-cover" />
+              <div className="w-full rounded-lg overflow-hidden border border-gray-100 shadow-sm bg-gray-50">
+                <img src="/pcb1.jpg" alt="PCB layout design" className="w-full h-auto block" />
               </div>
             </div>
 
@@ -39,8 +39,8 @@ export default function PcbDesigning() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-                <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden relative">
-                    <img src="/pcb2.jpg" alt="Printed circuit board components" className="w-full h-full object-cover" />
+                <div className="w-full rounded-lg overflow-hidden border border-gray-100 shadow-sm bg-gray-50">
+                    <img src="/pcb2.jpg" alt="Printed circuit board components" className="w-full h-auto block" />
                 </div>
                 <div>
                     <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
