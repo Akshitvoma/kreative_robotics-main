@@ -16,9 +16,9 @@ export const projectGalleryData: ProjectLevel[] = [
     name: 'Funtronix',
     path: '/level-1-projects',
     projects: [
-      { title: 'Project 1.1', imageUrl: '/robot.png' },
-      { title: 'Project 1.2', imageUrl: '/robot.png' },
-      { title: 'Project 1.3', imageUrl: '/robot.png' },
+      { title: 'Project 1.1', imageUrl: '/Level 1.JPG' },
+      { title: 'Project 1.2', imageUrl: '/Level 1.1.JPG' },
+      { title: 'Project 1.3', imageUrl: '/Level 1.2.JPG' },
     ],
   },
   {
