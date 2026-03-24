@@ -1,11 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
-const PlaceholderImage = ({ alt, className }: { alt: string; className?: string }) => (
-  <div className={`bg-gray-200 rounded-lg flex items-center justify-center ${className}`}>
-    <span className="text-gray-500">{alt}</span>
-  </div>
-);
 
 export default function ArduinoMasterclass() {
   return (
@@ -26,7 +21,9 @@ export default function ArduinoMasterclass() {
                   Arduino is an open-source electronics platform based on easy-to-use hardware and software. It's designed for anyone making interactive projects.
                 </p>
               </div>
-              <PlaceholderImage alt="Arduino board" className="w-full h-64" />
+              <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden relative">
+                <img src="/Uno.jpeg" alt="Arduino board" className="w-full h-full object-cover" />
+              </div>
             </div>
 
             <div className="mb-16">
@@ -42,7 +39,9 @@ export default function ArduinoMasterclass() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-                <PlaceholderImage alt="Arduino project components" className="w-full h-64" />
+                <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden relative">
+                    <img src="/Dvi.jpeg" alt="Arduino project components" className="w-full h-full object-cover" />
+                </div>
                 <div>
                     <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
                     <p className="text-foreground/80 leading-relaxed mb-4">
