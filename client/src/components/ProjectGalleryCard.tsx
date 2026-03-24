@@ -6,9 +6,12 @@ export type ProjectGalleryItem = {
   title: string;
   imageUrl: string;
   videoUrl?: string;
+  objectFit?: 'cover' | 'contain';
 };
 
 export function ProjectGalleryCard({ project, index = 0 }: { project: ProjectGalleryItem; index?: number }) {
+  const isContain = project.objectFit === 'contain';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -17,11 +20,13 @@ export function ProjectGalleryCard({ project, index = 0 }: { project: ProjectGal
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <div className="relative overflow-hidden rounded-lg aspect-video">
+      <div className={`relative overflow-hidden rounded-lg aspect-video ${isContain ? 'bg-gray-50 border border-gray-100 shadow-inner' : ''}`}>
         <img
           src={project.imageUrl}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+            isContain ? 'object-contain' : 'object-cover'
+          }`}
         />
         {project.videoUrl && (
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
