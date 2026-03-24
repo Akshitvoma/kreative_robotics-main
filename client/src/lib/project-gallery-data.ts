@@ -8,6 +8,7 @@ export type ProjectLevel = {
     imageUrl: string;
     videoUrl?: string;
     objectFit?: 'cover' | 'contain';
+    objectPosition?: string;
   }[];
 };
 
@@ -17,7 +18,7 @@ export const projectGalleryData: ProjectLevel[] = [
     name: 'Funtronix',
     path: '/level-1-projects',
     projects: [
-      { title: 'Project 1.1', imageUrl: '/Level 1.JPG', objectFit: 'contain' },
+      { title: 'Project 1.1', imageUrl: '/Level 1.JPG', objectPosition: 'top' },
       { title: 'Project 1.2', imageUrl: '/Level 1.1.JPG' },
       { title: 'Project 1.3', imageUrl: '/Level 1.2.JPG' },
     ],
