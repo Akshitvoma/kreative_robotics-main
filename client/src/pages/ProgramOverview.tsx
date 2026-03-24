@@ -10,11 +10,11 @@ export default function ProgramOverview() {
         <section
           className="relative flex items-center justify-center py-40 md:py-56 pt-32"
         >
-            <img 
-                src="/Banner.png" 
-                alt="Program Overview Banner" 
-                className="absolute inset-0 w-full h-full object-cover" 
-            />
+          <img
+            src="/Banner.png"
+            alt="Program Overview Banner"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
         </section>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -25,11 +25,11 @@ export default function ProgramOverview() {
               Children
             </h1>
             <p className="text-lg text-blue-600 font-semibold">
-                Electronics, Robotics, Coding
-              </p>
-              <p className="text-md text-gray-600">
-                Designed for children aged 8–18 years
-              </p>
+              Electronics, Robotics, Coding
+            </p>
+            <p className="text-md text-gray-600">
+              Designed for children aged 8–18 years
+            </p>
           </div>
 
           {/* Main content section */}
@@ -60,19 +60,31 @@ export default function ProgramOverview() {
               Inside Kreative Robotics
             </h2>
             <div className="space-y-4">
-              {/* Placeholder for large image */}
-              <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">
-                  Students working on a project
-                </span>
+              {/* Main Image */}
+              <div className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
+                <img
+                  src="/Overview 5.jpeg"
+                  alt="Students working on a project"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
-                {/* Placeholders for thumbnails */}
-                <div className="w-full h-24 bg-gray-200 rounded-lg"></div>
-                <div className="w-full h-24 bg-gray-200 rounded-lg border-4 border-blue-500"></div>
-                <div className="w-full h-24 bg-gray-200 rounded-lg"></div>
-                <div className="w-full h-24 bg-gray-200 rounded-lg"></div>
-                <div className="w-full h-24 bg-gray-200 rounded-lg"></div>
+                {/* Thumbnails */}
+                <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden">
+                  <img src="/Overview 1.JPG" alt="Overview 1" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden border-4 border-blue-500">
+                  <img src="/Overview.jpg" alt="Overview 5" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden">
+                  <img src="/Overview 2.JPG" alt="Overview 2" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden">
+                  <img src="/Overview 3.JPG" alt="Overview 3" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden">
+                  <img src="/Overview 4.jpeg" alt="Overview 4" className="w-full h-full object-cover" />
+                </div>
               </div>
             </div>
           </div>
