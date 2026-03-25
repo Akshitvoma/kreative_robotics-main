@@ -49,6 +49,7 @@ export const projectGalleryData: ProjectLevel[] = [
     projects: [
       { title: 'Project 4.1', imageUrl: '/Level 4.JPG' },
       { title: 'Project 4.2', imageUrl: '/Level 4.1.JPG' },
+      { title: 'Project 4.2', imageUrl: '/Level 4.2.jpeg' },
     ],
   },
   {
@@ -75,7 +76,7 @@ export const projectGalleryData: ProjectLevel[] = [
     name: 'WalkO’Botz',
     path: '/level-7-projects',
     projects: [
-      { title: 'Project 7.1', imageUrl: '/robot.png' },
+      { title: 'Project 7.1', imageUrl: '/Level 7.JPG' },
     ],
   },
 ];
