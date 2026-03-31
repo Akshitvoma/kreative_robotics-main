@@ -1,12 +1,7 @@
-import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ImageLightbox } from "@/components/ImageLightbox";
 
 export default function ProgramOverview() {
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const galleryImages = [
     "/Overview 5.jpeg",
     "/Overview 1.JPG",
@@ -15,11 +10,6 @@ export default function ProgramOverview() {
     "/Overview 3.JPG",
     "/Overview 4.jpeg",
   ];
-
-  const openLightbox = (index: number) => {
-    setCurrentImageIndex(index);
-    setIsLightboxOpen(true);
-  };
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
@@ -81,62 +71,43 @@ export default function ProgramOverview() {
             <div className="space-y-4">
               {/* Main Image */}
               <div 
-                className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center cursor-pointer group relative"
-                onClick={() => openLightbox(0)}
+                className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center"
               >
                 <img
                   src={galleryImages[0]}
                   alt="Students working on a project"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-md p-3 rounded-full border border-white/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                  </span>
-                </div>
               </div>
               <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
                 {/* Thumbnails */}
                 <div 
-                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all"
-                  onClick={() => openLightbox(1)}
+                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden"
                 >
                   <img src={galleryImages[1]} alt="Overview 1" className="w-full h-full object-cover" />
                 </div>
                 <div 
-                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden border-4 border-blue-500 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all"
-                  onClick={() => openLightbox(2)}
+                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden border-4 border-blue-500"
                 >
                   <img src={galleryImages[2]} alt="Overview 5" className="w-full h-full object-cover" />
                 </div>
                 <div 
-                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all"
-                  onClick={() => openLightbox(3)}
+                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden"
                 >
                   <img src={galleryImages[3]} alt="Overview 2" className="w-full h-full object-cover" />
                 </div>
                 <div 
-                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all"
-                  onClick={() => openLightbox(4)}
+                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden"
                 >
                   <img src={galleryImages[4]} alt="Overview 3" className="w-full h-full object-cover" />
                 </div>
                 <div 
-                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all"
-                  onClick={() => openLightbox(5)}
+                  className="w-full h-24 bg-gray-200 rounded-lg overflow-hidden"
                 >
                   <img src={galleryImages[5]} alt="Overview 4" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
-
-            <ImageLightbox 
-              isOpen={isLightboxOpen}
-              onClose={() => setIsLightboxOpen(false)}
-              images={galleryImages}
-              currentIndex={currentImageIndex}
-              onIndexChange={setCurrentImageIndex}
-            />
           </div>
 
           {/* "What makes Kreative Robotics unique" section */}
