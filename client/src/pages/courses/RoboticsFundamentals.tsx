@@ -1,12 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
-const PlaceholderImage = ({ alt, className }: { alt: string; className?: string }) => (
-  <div className={`bg-gray-200 rounded-lg flex items-center justify-center ${className}`}>
-    <span className="text-gray-500">{alt}</span>
-  </div>
-);
-
 export default function RoboticsFundamentals() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -26,7 +20,11 @@ export default function RoboticsFundamentals() {
                   Robotics is a field of engineering and science that deals with the design, construction, operation, and use of robots. Robots are programmable machines that can perform a series of actions automatically.
                 </p>
               </div>
-              <PlaceholderImage alt="Robotics Fundamentals" className="w-full h-64" />
+              <img
+                src="/RF.jpeg"
+                alt="Robotics Fundamentals"
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
             </div>
 
             <div className="mb-16">
@@ -42,19 +40,23 @@ export default function RoboticsFundamentals() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-                <PlaceholderImage alt="Robotics tools and components" className="w-full h-64" />
-                <div>
-                    <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
-                    <p className="text-foreground/80 leading-relaxed mb-4">
-                        Students will get hands-on experience with beginner-friendly robotics kits and software.
-                    </p>
-                    <ul className="list-disc list-inside space-y-2 text-lg text-foreground/80">
-                        <li>Robotics Kits (e.g., Lego Mindstorms, or custom kits)</li>
-                        <li>Block-based programming software</li>
-                        <li>Basic mechanical assembly</li>
-                        <li>Sensor calibration and testing</li>
-                    </ul>
-                </div>
+              <img
+                src="/RF1.jpeg"
+                alt="Robotics tools and components"
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
+              <div>
+                <h2 className="text-3xl font-bold mb-4">Tools & Skills Covered</h2>
+                <p className="text-foreground/80 leading-relaxed mb-4">
+                  Students will get hands-on experience with beginner-friendly robotics kits and software.
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-lg text-foreground/80">
+                  <li>Robotics Kits (e.g., Lego Mindstorms, or custom kits)</li>
+                  <li>Block-based programming software</li>
+                  <li>Basic mechanical assembly</li>
+                  <li>Sensor calibration and testing</li>
+                </ul>
+              </div>
             </div>
 
             <div className="text-center">
