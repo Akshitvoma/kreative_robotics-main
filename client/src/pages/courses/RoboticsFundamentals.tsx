@@ -51,7 +51,7 @@ export default function RoboticsFundamentals() {
                   Students will get hands-on experience with beginner-friendly robotics kits and software.
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-lg text-foreground/80">
-                  <li>Robotics Kits (e.g., Lego Mindstorms, or custom kits)</li>
+                  <li>Robotics Kits</li>
                   <li>Block-based programming software</li>
                   <li>Basic mechanical assembly</li>
                   <li>Sensor calibration and testing</li>
