@@ -57,9 +57,8 @@ export const projectGalleryData: ProjectLevel[] = [
     name: 'C-Robo',
     path: '/level-5-projects',
     projects: [
-      { title: 'Project 5.1', imageUrl: '/robot.png' },
-      { title: 'Project 5.2', imageUrl: '/robot.png' },
-      { title: 'Project 5.3', imageUrl: '/robot.png' },
+      { title: 'Project 5.1', imageUrl: '/Level 5.JPG' },
+      { title: 'Project 5.2', imageUrl: '/Level 5.1.JPG' },
     ],
   },
   {
@@ -67,8 +66,7 @@ export const projectGalleryData: ProjectLevel[] = [
     name: 'Embetrix',
     path: '/level-6-projects',
     projects: [
-      { title: 'Project 6.1', imageUrl: '/robot.png' },
-      { title: 'Project 6.2', imageUrl: '/robot.png' },
+      { title: 'Project 6.1', imageUrl: '/Level 6.JPG' },
     ],
   },
   {
