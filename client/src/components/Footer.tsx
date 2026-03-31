@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Cpu, Facebook, Instagram, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export function Footer() {
   return (
@@ -22,6 +23,7 @@ export function Footer() {
                 { Icon: Facebook, href: "https://www.facebook.com/kreativerobotics/" },
                 { Icon: Instagram, href: "https://www.instagram.com/kreative_robotics/" },
                 { Icon: Youtube, href: "https://www.youtube.com/@kreativeroboticsobotzwarangal" },
+                { Icon: FaWhatsapp, href: "https://wa.me/9121900667" },
               ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
