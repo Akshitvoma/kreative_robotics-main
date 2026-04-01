@@ -18,6 +18,7 @@ import IotSystems from "@/pages/courses/IotSystems";
 import PcbDesigning from "@/pages/courses/pcb-designing";
 import ThreeDDesigning from "@/pages/courses/3d-designing";
 import { ProjectGallery } from "@/pages/ProjectGallery";
+import Gallery from "@/pages/Gallery";
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/projects" component={Projects} />
       <Route path="/projects/level/:level" component={ProjectGallery} />
       <Route path="/about" component={About} />
+      <Route path="/gallery" component={Gallery} />
       <Route path="/contact" component={Contact} />
       <Route path="/program/overview" component={ProgramOverview} />
       <Route path="/program/benefits" component={ProgramBenefits} />
