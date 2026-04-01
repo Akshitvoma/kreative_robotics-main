@@ -11,8 +11,8 @@ import { Upload, Image as ImageIcon, Loader2 } from "lucide-react";
 export default function Gallery() {
   // --- CLOUDINARY CONFIGURATION ---
   // Replace these with your actual Cloudinary details
-  const CLOUD_NAME = "your_cloud_name"; 
-  const UPLOAD_PRESET = "your_unsigned_preset";
+  const CLOUD_NAME = "dqi8sg6en";
+  const UPLOAD_PRESET = "sqgs3utg";
   // --------------------------------
 
   const [images, setImages] = useState<string[]>([]);
@@ -39,7 +39,7 @@ export default function Gallery() {
 
       // Upload using Fetch API
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/dqi8sg6en/image/upload`,
         {
           method: "POST",
           body: formData,
@@ -66,17 +66,17 @@ export default function Gallery() {
   return (
     <div className="min-h-screen pt-24 pb-12 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-display font-bold mb-4"
           >
             Project <span className="text-primary">Gallery</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -98,7 +98,7 @@ export default function Gallery() {
               disabled={isUploading}
             />
             <label htmlFor="gallery-upload">
-              <Button 
+              <Button
                 asChild
                 className="rounded-xl px-8 py-6 h-auto text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all gap-2 cursor-pointer"
               >
@@ -126,8 +126,8 @@ export default function Gallery() {
                 transition={{ delay: index * 0.05 }}
                 className="group relative aspect-square overflow-hidden rounded-2xl border border-border/50 bg-muted/30"
               >
-                <img 
-                  src={url} 
+                <img
+                  src={url}
                   alt={`Gallery Image ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -139,7 +139,7 @@ export default function Gallery() {
           </div>
         ) : (
           /* Empty State */
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex flex-col items-center justify-center py-20 border-2 border-dashed border-border/50 rounded-3xl bg-muted/5"
