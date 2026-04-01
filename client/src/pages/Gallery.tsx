@@ -39,7 +39,7 @@ export default function Gallery() {
 
       // Upload using Fetch API
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dqi8sg6en/image/upload`,
+        `https://api.cloudinary.com/v1_1/$dqi8sg6en/image/upload`,
         {
           method: "POST",
           body: formData,
