@@ -12,7 +12,7 @@ export default function Gallery() {
   // --- CLOUDINARY CONFIGURATION ---
   // Replace these with your actual Cloudinary details
   const CLOUD_NAME = "dqi8sg6en";
-  const UPLOAD_PRESET = "sqgs3utg";
+  const UPLOAD_PRESET = "gallery_upload";
   // --------------------------------
 
   const [images, setImages] = useState<string[]>([]);
@@ -24,7 +24,7 @@ export default function Gallery() {
     if (!file) return;
 
     // Check if configuration is set
-    if (CLOUD_NAME === "dqi8sg6en" || UPLOAD_PRESET === "sqgs3utg") {
+    if (!CLOUD_NAME || !UPLOAD_PRESET) {
       alert("Please configure your Cloudinary Cloud Name and Upload Preset in Gallery.tsx");
       return;
     }
@@ -39,7 +39,7 @@ export default function Gallery() {
 
       // Upload using Fetch API
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/$dqi8sg6en/image/upload`,
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
         {
           method: "POST",
           body: formData,
