@@ -24,7 +24,7 @@ export default function Gallery() {
     if (!file) return;
 
     // Check if configuration is set
-    if (CLOUD_NAME === "your_cloud_name" || UPLOAD_PRESET === "your_unsigned_preset") {
+    if (CLOUD_NAME === "dqi8sg6en" || UPLOAD_PRESET === "sqgs3utg") {
       alert("Please configure your Cloudinary Cloud Name and Upload Preset in Gallery.tsx");
       return;
     }
