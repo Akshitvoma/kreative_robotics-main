@@ -1,0 +1,1 @@
+I developed this website for Kreative Robotics to create a clean and informative platform for robotics education. It focuses on presenting key concepts like Mechanics, Electronics, Coding, and IoT in a structured format, while ensuring a smooth and responsive user experience.
