@@ -16,18 +16,41 @@ export default function Gallery() {
   // --------------------------------
 
   const STORAGE_KEY = "kreative_robotics_gallery";
-  // Load images from localStorage on initialization
-  const [images, setImages] = useState<string[]>(() => {
-    const savedImages = localStorage.getItem(STORAGE_KEY);
-    return savedImages ? JSON.parse(savedImages) : [];
-  });
+  const GALLERY_TAG = "robotic_gallery"; // Unique tag for your gallery
 
+  // Initial state as empty, we will fetch from Cloudinary
+  const [images, setImages] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Experience: Save images to localStorage whenever they change
+  // Fetch all images with our tag from Cloudinary
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(images));
-  }, [images]);
+    const fetchGalleryImages = async () => {
+      try {
+        setIsLoading(true);
+        // This URL fetches a list of all images with the specific tag
+        // Note: You must enable 'Resource list' in Cloudinary Settings > Security
+        const response = await fetch(
+          `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${GALLERY_TAG}.json?timestamp=${Date.now()}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          // Construct full URLs from the results
+          const urls = data.resources.map((res: any) =>
+            `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
+          );
+          setImages(urls);
+        }
+      } catch (error) {
+        console.warn("Could not fetch shared gallery. Make sure 'Resource list' is enabled in Cloudinary settings.", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchGalleryImages();
+  }, []);
 
   // Function to handle image upload to Cloudinary
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +70,7 @@ export default function Gallery() {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", UPLOAD_PRESET);
+      formData.append("tags", GALLERY_TAG); // Tag the image for the shared gallery
 
       // Upload using Fetch API
       const response = await fetch(
@@ -132,7 +156,12 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        {images.length > 0 ? (
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+            <p className="text-foreground/60">Loading shared gallery...</p>
+          </div>
+        ) : images.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {images.map((url, index) => (
               <motion.div
