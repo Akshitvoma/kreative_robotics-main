@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Upload, Image as ImageIcon, Loader2 } from "lucide-react";
+import { Upload, Image as ImageIcon, Loader2, X } from "lucide-react";
 
 /**
  * Gallery Page Component
@@ -15,8 +15,19 @@ export default function Gallery() {
   const UPLOAD_PRESET = "gallery_upload";
   // --------------------------------
 
-  const [images, setImages] = useState<string[]>([]);
+  const STORAGE_KEY = "kreative_robotics_gallery";
+  // Load images from localStorage on initialization
+  const [images, setImages] = useState<string[]>(() => {
+    const savedImages = localStorage.getItem(STORAGE_KEY);
+    return savedImages ? JSON.parse(savedImages) : [];
+  });
+
   const [isUploading, setIsUploading] = useState(false);
+
+  // Experience: Save images to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(images));
+  }, [images]);
 
   // Function to handle image upload to Cloudinary
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +72,11 @@ export default function Gallery() {
     } finally {
       setIsUploading(false);
     }
+  };
+
+  // Function to delete an image from the UI
+  const handleDelete = (indexToDelete: number) => {
+    setImages((prev) => prev.filter((_, index) => index !== indexToDelete));
   };
 
   return (
@@ -131,6 +147,18 @@ export default function Gallery() {
                   alt={`Gallery Image ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+
+                {/* Delete Button - Appears on Hover */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent any parent click events
+                    handleDelete(index);
+                  }}
+                  className="absolute top-3 right-3 p-2 bg-red-500 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 hover:bg-red-600 shadow-lg hover:scale-110"
+                  title="Delete image"
+                >
+                  <X className="w-5 h-5" />
+                </button>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <span className="text-white text-sm font-medium">Project {images.length - index}</span>
                 </div>
