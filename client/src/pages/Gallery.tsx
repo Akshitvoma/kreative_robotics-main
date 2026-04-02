@@ -28,6 +28,7 @@ export default function Gallery() {
     const fetchGalleryImages = async () => {
       try {
         setIsLoading(true);
+        console.log("Fetching shared gallery from Cloudinary...");
         // This URL fetches a list of all images with the specific tag
         // Note: You must enable 'Resource list' in Cloudinary Settings > Security
         const response = await fetch(
@@ -41,6 +42,10 @@ export default function Gallery() {
             `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
           );
           setImages(urls);
+          console.log("Successfully loaded shared gallery:", urls.length, "images found.");
+        } else {
+          console.warn("Shared gallery list could not be loaded (Status:", response.status, ")");
+          console.warn("Check Cloudinary Settings > Security > Resource list (should be UNCHECKED).");
         }
       } catch (error) {
         console.warn("Could not fetch shared gallery. Make sure 'Resource list' is enabled in Cloudinary settings.", error);
