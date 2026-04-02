@@ -112,27 +112,26 @@ export default function Gallery() {
     <div className="min-h-screen pt-24 pb-12 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-display font-bold mb-4"
-          >
-            Project <span className="text-primary">Gallery</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-foreground/60 text-lg max-w-2xl mx-auto"
-          >
-            Explore the amazing creations from our students. Upload your own masterpiece to showcase your skills!
-          </motion.p>
-        </div>
+        {/* Header Section with Title and Upload */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-12">
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-2xl md:text-3xl font-display font-bold mb-2"
+            >
+              Project <span className="text-primary">Gallery</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-foreground/60 text-sm max-w-xl"
+            >
+              Explore and share amazing student creations.
+            </motion.p>
+          </div>
 
-        {/* Upload Section */}
-        <div className="flex justify-center mb-16">
           <div className="relative">
             <input
               type="file"
@@ -145,15 +144,15 @@ export default function Gallery() {
             <label htmlFor="gallery-upload">
               <Button
                 asChild
-                className="rounded-xl px-8 py-6 h-auto text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all gap-2 cursor-pointer"
+                className="rounded-xl px-4 py-2 h-10 text-sm font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all gap-2 cursor-pointer"
               >
                 <span>
                   {isUploading ? (
-                    <Loader2 className="w-6 h-6 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
-                    <Upload className="w-6 h-6" />
+                    <Upload className="w-4 h-4" />
                   )}
-                  {isUploading ? "Uploading..." : "Upload Project Image"}
+                  {isUploading ? "Uploading..." : "Upload Project"}
                 </span>
               </Button>
             </label>
