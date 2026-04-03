@@ -152,9 +152,9 @@ export default function Gallery() {
               Please go to your <span className="font-bold">Cloudinary Settings</span> &rarr; <span className="font-bold">Security</span> and uncheck <span className="font-bold">"Resource List"</span> under Restricted media types.
             </p>
             <Button
-              variant="link"
+              variant="outline"
               onClick={() => fetchGalleryImages()}
-              className="mt-4 text-red-500"
+              className="mt-4 text-red-500 rounded-full"
             >
               Try Again
             </Button>
