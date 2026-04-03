@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Upload, Image as ImageIcon, Loader2, X } from "lucide-react";
+import { Upload, Image as ImageIcon, Loader2 } from "lucide-react";
 
 /**
  * Gallery Page Component
@@ -10,24 +10,19 @@ import { Upload, Image as ImageIcon, Loader2, X } from "lucide-react";
  */
 export default function Gallery() {
   // --- CLOUDINARY CONFIGURATION ---
-  // Replace these with your actual Cloudinary details
-  const CLOUD_NAME = "dqi8sg6en";
-  const UPLOAD_PRESET = "gallery_upload";
+  // Images uploaded to your Cloudinary account with this tag will automatically appear here.
+  const CLOUD_NAME = "detgusdmt";
+  const GALLERY_TAG = "robotic_gallery";
   // --------------------------------
 
   const STORAGE_KEY = "kreative_robotics_gallery";
-  const GALLERY_TAG = "robotic_gallery"; // Unique tag for your gallery
 
   // Initial state from localStorage if available, otherwise empty
   const [images, setImages] = useState<string[]>(() => {
     const cached = localStorage.getItem(STORAGE_KEY);
     return cached ? JSON.parse(cached) : [];
   });
-  const [isUploading, setIsUploading] = useState(false);
-  const [isLoading, setIsLoading] = useState(() => {
-    const cached = localStorage.getItem(STORAGE_KEY);
-    return !cached; // If we have a cache, we don't need to show the big loading spinner initially
-  });
+  const [isLoading, setIsLoading] = useState(true);
 
   // Helper function to get optimized Cloudinary URL
   const getOptimizedUrl = (url: string, width = 500) => {
@@ -40,9 +35,6 @@ export default function Gallery() {
   useEffect(() => {
     const fetchGalleryImages = async () => {
       try {
-        // Only set loading to true if we don't have cached images
-        if (images.length === 0) setIsLoading(true);
-        
         console.log("Fetching shared gallery from Cloudinary...");
         const response = await fetch(
           `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${GALLERY_TAG}.json?timestamp=${Date.now()}`
@@ -53,12 +45,12 @@ export default function Gallery() {
           const urls = data.resources.map((res: any) =>
             `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
           );
-          
+
           setImages(urls);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(urls));
           console.log("Successfully loaded shared gallery:", urls.length, "images found.");
         } else {
-          console.warn("Shared gallery list could not be loaded (Status:", response.status, ")");
+          console.warn("Shared gallery list could not be loaded. Please ensure 'Resource List' is enabled in Cloudinary Security settings.");
         }
       } catch (error) {
         console.warn("Could not fetch shared gallery. Using cached version if available.", error);
@@ -68,116 +60,34 @@ export default function Gallery() {
     };
 
     fetchGalleryImages();
-  }, [images.length === 0]); // Dependency on initial load
+  }, []); // Fetch once on mount
 
-  // Function to handle image upload to Cloudinary
-  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    // Check if configuration is set
-    if (!CLOUD_NAME || !UPLOAD_PRESET) {
-      alert("Please configure your Cloudinary Cloud Name and Upload Preset in Gallery.tsx");
-      return;
-    }
-
-    setIsUploading(true);
-
-    try {
-      // Prepare form data for Cloudinary
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", UPLOAD_PRESET);
-      formData.append("tags", GALLERY_TAG); // Tag the image for the shared gallery
-
-      // Upload using Fetch API
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.secure_url) {
-        // Add new image URL to state and cache
-        const newImages = [data.secure_url, ...images];
-        setImages(newImages);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(newImages));
-      } else {
-        console.error("Upload failed:", data);
-        alert("Upload failed. Please check your Cloudinary settings.");
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("An error occurred during upload.");
-    } finally {
-      setIsUploading(false);
-    }
-  };
-
-  // Function to delete an image from the UI
-  const handleDelete = (indexToDelete: number) => {
-    const updatedImages = images.filter((_, index) => index !== indexToDelete);
-    setImages(updatedImages);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedImages));
-  };
 
   return (
     <div className="min-h-screen pt-24 pb-12 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header Section with Title and Upload */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-12">
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl md:text-3xl font-display font-bold mb-2"
-            >
-              Project <span className="text-primary">Gallery</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-foreground/60 text-sm max-w-xl"
-            >
-              Explore and share amazing student creations.
-            </motion.p>
-          </div>
-
-          <div className="relative">
-            <input
-              type="file"
-              id="gallery-upload"
-              className="hidden"
-              accept="image/*"
-              onChange={handleUpload}
-              disabled={isUploading}
-            />
-            <label htmlFor="gallery-upload">
-              <Button
-                asChild
-                className="rounded-xl px-4 py-2 h-10 text-sm font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all gap-2 cursor-pointer"
-              >
-                <span>
-                  {isUploading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Upload className="w-4 h-4" />
-                  )}
-                  {isUploading ? "Uploading..." : "Upload Project"}
-                </span>
-              </Button>
-            </label>
-          </div>
+        {/* Header Section */}
+        <div className="mb-12">
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-2xl md:text-3xl font-display font-bold mb-2 text-center"
+          >
+            Project <span className="text-primary">Gallery</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-foreground/60 text-sm max-w-xl mx-auto text-center"
+          >
+            Explore amazing creations from our students.
+          </motion.p>
         </div>
 
         {/* Gallery Grid */}
-        {isLoading ? (
+        {isLoading && images.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
             <p className="text-foreground/60">Loading shared gallery...</p>
@@ -199,17 +109,6 @@ export default function Gallery() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
-                {/* Delete Button - Appears on Hover */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent any parent click events
-                    handleDelete(index);
-                  }}
-                  className="absolute top-3 right-3 p-2 bg-red-500 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 hover:bg-red-600 shadow-lg hover:scale-110"
-                  title="Delete image"
-                >
-                  <X className="w-5 h-5" />
-                </button>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <span className="text-white text-sm font-medium">Project {images.length - index}</span>
                 </div>
@@ -226,8 +125,8 @@ export default function Gallery() {
             <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-4">
               <ImageIcon className="w-8 h-8" />
             </div>
-            <p className="text-foreground/40 font-medium">No images uploaded yet.</p>
-            <p className="text-foreground/30 text-sm mt-1">Be the first to share your project!</p>
+            <p className="text-foreground/40 font-medium text-center px-4">The gallery is currently empty.</p>
+            <p className="text-foreground/30 text-sm mt-1 text-center px-4">New projects will appear here once uploaded by the administrator.</p>
           </motion.div>
         )}
       </div>
