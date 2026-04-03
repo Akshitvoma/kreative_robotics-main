@@ -24,11 +24,11 @@ export default function Gallery() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorType, setErrorType] = useState<"security" | "empty" | "none">("none");
 
-  // Helper function to get optimized Cloudinary URL
-  const getOptimizedUrl = (url: string, width = 500) => {
+  // Helper function to get optimized Cloudinary URL (no cropping)
+  const getOptimizedUrl = (url: string, width = 600) => {
     if (!url.includes("cloudinary.com")) return url;
-    // Inject transformation parameters: auto-format, auto-quality, scaled width
-    return url.replace("/upload/", `/upload/f_auto,q_auto,w_${width},c_fill/`);
+    // Inject transformation parameters: auto-format, auto-quality, scaled width, limit crop
+    return url.replace("/upload/", `/upload/f_auto,q_auto,w_${width},c_limit/`);
   };
 
   const fetchGalleryImages = async () => {
@@ -102,20 +102,20 @@ export default function Gallery() {
             <p className="text-foreground/60">Loading shared gallery...</p>
           </div>
         ) : images.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 lg:gap-8 [column-fill:_balance]">
             {images.map((url, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="group relative aspect-square overflow-hidden rounded-2xl border border-border/50 bg-muted/30"
+                className="break-inside-avoid mb-4 md:mb-6 lg:mb-8 group relative overflow-hidden rounded-2xl border border-border/50 bg-muted/30"
               >
                 <img
                   src={getOptimizedUrl(url)}
                   alt={`Gallery Image ${index + 1}`}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
