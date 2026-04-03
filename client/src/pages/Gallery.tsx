@@ -89,23 +89,10 @@ export default function Gallery() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-foreground/60 text-sm max-w-xl mx-auto text-center mb-6"
+            className="text-foreground/60 text-sm max-w-xl mx-auto text-center"
           >
             Explore amazing creations from our students.
           </motion.p>
-
-          <div className="flex justify-center">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => fetchGalleryImages()}
-              disabled={isLoading}
-              className="rounded-full gap-2"
-            >
-              <Upload className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />
-              {isLoading ? "Refreshing..." : "Refresh Gallery"}
-            </Button>
-          </div>
         </div>
 
         {/* Gallery Grid */}
