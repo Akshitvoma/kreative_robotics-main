@@ -17,12 +17,12 @@ export default function Gallery() {
 
   const STORAGE_KEY = "kreative_robotics_gallery";
 
-  // Initial state from localStorage if available, otherwise empty
   const [images, setImages] = useState<string[]>(() => {
     const cached = localStorage.getItem(STORAGE_KEY);
     return cached ? JSON.parse(cached) : [];
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [errorType, setErrorType] = useState<"security" | "empty" | "none">("none");
 
   // Helper function to get optimized Cloudinary URL
   const getOptimizedUrl = (url: string, width = 500) => {
@@ -31,34 +31,43 @@ export default function Gallery() {
     return url.replace("/upload/", `/upload/f_auto,q_auto,w_${width},c_fill/`);
   };
 
-  // Fetch all images with our tag from Cloudinary
-  useEffect(() => {
-    const fetchGalleryImages = async () => {
-      try {
-        console.log("Fetching shared gallery from Cloudinary...");
-        const response = await fetch(
-          `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${GALLERY_TAG}.json?timestamp=${Date.now()}`
+  const fetchGalleryImages = async () => {
+    setIsLoading(true);
+    setErrorType("none");
+    try {
+      console.log("Fetching shared gallery from Cloudinary...");
+      const response = await fetch(
+        `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${GALLERY_TAG}.json?timestamp=${Date.now()}`
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const urls = data.resources.map((res: any) =>
+          `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
         );
 
-        if (response.ok) {
-          const data = await response.json();
-          const urls = data.resources.map((res: any) =>
-            `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
-          );
-
+        if (urls.length === 0) {
+          setErrorType("empty");
+        } else {
           setImages(urls);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(urls));
           console.log("Successfully loaded shared gallery:", urls.length, "images found.");
-        } else {
-          console.warn("Shared gallery list could not be loaded. Please ensure 'Resource List' is enabled in Cloudinary Security settings.");
         }
-      } catch (error) {
-        console.warn("Could not fetch shared gallery. Using cached version if available.", error);
-      } finally {
-        setIsLoading(false);
+      } else if (response.status === 404 || response.status === 403) {
+        setErrorType("security");
+        console.warn("Shared gallery list could not be loaded. Please ensure 'Resource List' is enabled in Cloudinary Security settings.");
+      } else {
+        throw new Error(`Cloudinary API returned ${response.status}`);
       }
-    };
+    } catch (error) {
+      console.warn("Could not fetch shared gallery. Using cached version if available.", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  // Fetch all images with our tag from Cloudinary
+  useEffect(() => {
     fetchGalleryImages();
   }, []); // Fetch once on mount
 
@@ -80,10 +89,23 @@ export default function Gallery() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-foreground/60 text-sm max-w-xl mx-auto text-center"
+            className="text-foreground/60 text-sm max-w-xl mx-auto text-center mb-6"
           >
             Explore amazing creations from our students.
           </motion.p>
+
+          <div className="flex justify-center">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => fetchGalleryImages()}
+              disabled={isLoading}
+              className="rounded-full gap-2"
+            >
+              <Upload className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />
+              {isLoading ? "Refreshing..." : "Refresh Gallery"}
+            </Button>
+          </div>
         </div>
 
         {/* Gallery Grid */}
@@ -115,8 +137,55 @@ export default function Gallery() {
               </motion.div>
             ))}
           </div>
+        ) : errorType === "security" ? (
+          /* Security Error State */
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-16 border-2 border-dashed border-red-500/20 rounded-3xl bg-red-500/5"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500 mb-4">
+              <Upload className="w-8 h-8" />
+            </div>
+            <h3 className="text-lg font-bold text-red-500 mb-2">Resource List Blocked</h3>
+            <p className="text-foreground/60 text-center max-w-md px-4">
+              Please go to your <span className="font-bold">Cloudinary Settings</span> &rarr; <span className="font-bold">Security</span> and uncheck <span className="font-bold">"Resource List"</span> under Restricted media types.
+            </p>
+            <Button
+              variant="link"
+              onClick={() => fetchGalleryImages()}
+              className="mt-4 text-red-500"
+            >
+              Try Again
+            </Button>
+          </motion.div>
+        ) : errorType === "empty" ? (
+          /* No Tags Error State */
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-16 border-2 border-dashed border-primary/20 rounded-3xl bg-primary/5"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+              <ImageIcon className="w-8 h-8" />
+            </div>
+            <h3 className="text-lg font-bold text-primary mb-2">No Tagged Images Found</h3>
+            <p className="text-foreground/60 text-center max-w-md px-4">
+              Images must have the tag <span className="font-bold">`{GALLERY_TAG}`</span> in Cloudinary to appear here.
+            </p>
+            <p className="text-foreground/40 text-sm mt-4 text-center px-4 max-w-md">
+              Please add the tag manually in your Media Library or set up an Upload Preset.
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => fetchGalleryImages()}
+              className="mt-6 rounded-full"
+            >
+              Refresh After Tagging
+            </Button>
+          </motion.div>
         ) : (
-          /* Empty State */
+          /* Generic Empty State */
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -126,7 +195,7 @@ export default function Gallery() {
               <ImageIcon className="w-8 h-8" />
             </div>
             <p className="text-foreground/40 font-medium text-center px-4">The gallery is currently empty.</p>
-            <p className="text-foreground/30 text-sm mt-1 text-center px-4">New projects will appear here once uploaded by the administrator.</p>
+            <p className="text-foreground/30 text-sm mt-1 text-center px-4">New projects will appear here once uploaded with the tag `{GALLERY_TAG}`.</p>
           </motion.div>
         )}
       </div>
