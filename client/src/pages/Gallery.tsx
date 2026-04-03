@@ -18,44 +18,57 @@ export default function Gallery() {
   const STORAGE_KEY = "kreative_robotics_gallery";
   const GALLERY_TAG = "robotic_gallery"; // Unique tag for your gallery
 
-  // Initial state as empty, we will fetch from Cloudinary
-  const [images, setImages] = useState<string[]>([]);
+  // Initial state from localStorage if available, otherwise empty
+  const [images, setImages] = useState<string[]>(() => {
+    const cached = localStorage.getItem(STORAGE_KEY);
+    return cached ? JSON.parse(cached) : [];
+  });
   const [isUploading, setIsUploading] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    const cached = localStorage.getItem(STORAGE_KEY);
+    return !cached; // If we have a cache, we don't need to show the big loading spinner initially
+  });
+
+  // Helper function to get optimized Cloudinary URL
+  const getOptimizedUrl = (url: string, width = 500) => {
+    if (!url.includes("cloudinary.com")) return url;
+    // Inject transformation parameters: auto-format, auto-quality, scaled width
+    return url.replace("/upload/", `/upload/f_auto,q_auto,w_${width},c_fill/`);
+  };
 
   // Fetch all images with our tag from Cloudinary
   useEffect(() => {
     const fetchGalleryImages = async () => {
       try {
-        setIsLoading(true);
+        // Only set loading to true if we don't have cached images
+        if (images.length === 0) setIsLoading(true);
+        
         console.log("Fetching shared gallery from Cloudinary...");
-        // This URL fetches a list of all images with the specific tag
-        // Note: You must enable 'Resource list' in Cloudinary Settings > Security
         const response = await fetch(
           `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${GALLERY_TAG}.json?timestamp=${Date.now()}`
         );
 
         if (response.ok) {
           const data = await response.json();
-          // Construct full URLs from the results
           const urls = data.resources.map((res: any) =>
             `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
           );
+          
           setImages(urls);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(urls));
           console.log("Successfully loaded shared gallery:", urls.length, "images found.");
         } else {
           console.warn("Shared gallery list could not be loaded (Status:", response.status, ")");
-          console.warn("Check Cloudinary Settings > Security > Resource list (should be UNCHECKED).");
         }
       } catch (error) {
-        console.warn("Could not fetch shared gallery. Make sure 'Resource list' is enabled in Cloudinary settings.", error);
+        console.warn("Could not fetch shared gallery. Using cached version if available.", error);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchGalleryImages();
-  }, []);
+  }, [images.length === 0]); // Dependency on initial load
 
   // Function to handle image upload to Cloudinary
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,8 +102,10 @@ export default function Gallery() {
       const data = await response.json();
 
       if (data.secure_url) {
-        // Add new image URL to state
-        setImages((prev) => [data.secure_url, ...prev]);
+        // Add new image URL to state and cache
+        const newImages = [data.secure_url, ...images];
+        setImages(newImages);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newImages));
       } else {
         console.error("Upload failed:", data);
         alert("Upload failed. Please check your Cloudinary settings.");
@@ -105,7 +120,9 @@ export default function Gallery() {
 
   // Function to delete an image from the UI
   const handleDelete = (indexToDelete: number) => {
-    setImages((prev) => prev.filter((_, index) => index !== indexToDelete));
+    const updatedImages = images.filter((_, index) => index !== indexToDelete);
+    setImages(updatedImages);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedImages));
   };
 
   return (
@@ -176,8 +193,9 @@ export default function Gallery() {
                 className="group relative aspect-square overflow-hidden rounded-2xl border border-border/50 bg-muted/30"
               >
                 <img
-                  src={url}
+                  src={getOptimizedUrl(url)}
                   alt={`Gallery Image ${index + 1}`}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
