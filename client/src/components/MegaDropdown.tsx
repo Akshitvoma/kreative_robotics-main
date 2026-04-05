@@ -82,7 +82,7 @@ function MegaDropdown() {
             </li>
             <li onMouseEnter={() => setActiveSubmenu("gallery")}>
               <button className={cn(leftPanelItemClass, activeSubmenu === "gallery" ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : cn("text-muted-foreground", hoverStyles))}>
-                <span>Gallery</span>
+                <span>Student gallery</span>
                 <ChevronRight className={cn("w-4 h-4 transition-transform", activeSubmenu === "gallery" && "rotate-90")} />
               </button>
             </li>
