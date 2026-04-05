@@ -83,7 +83,7 @@ export default function Gallery() {
             animate={{ opacity: 1, x: 0 }}
             className="text-2xl md:text-3xl font-display font-bold mb-2 text-center"
           >
-            Project <span className="text-primary">Gallery</span>
+            <span className="text-primary">Gallery</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, x: -20 }}

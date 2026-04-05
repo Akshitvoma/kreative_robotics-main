@@ -227,7 +227,7 @@ export function Navbar() {
                                 onClick={() => setMobileGalleryOpen(!mobileGalleryOpen)}
                                 className="flex items-center justify-between p-2 text-sm text-foreground/60 hover:text-primary"
                               >
-                                <span>Project Gallery</span>
+                                <span>Gallery</span>
                                 <ChevronDown className={cn("w-3 h-3 transition-transform", mobileGalleryOpen && "rotate-180")} />
                               </button>
                               <AnimatePresence>
