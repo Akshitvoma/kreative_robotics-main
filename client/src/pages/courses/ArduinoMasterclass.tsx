@@ -9,9 +9,9 @@ export default function ArduinoMasterclass() {
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">Arduino Masterclass</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">Arduino</h1>
             <p className="text-lg md:text-xl text-foreground/80 mb-12 text-center leading-relaxed">
-              Dive deep into the world of microcontrollers with our comprehensive Arduino Masterclass.
+              Dive deep into the world of microcontrollers with our comprehensive Arduino course.
             </p>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
@@ -59,7 +59,7 @@ export default function ArduinoMasterclass() {
             <div className="text-center">
               <h2 className="text-3xl font-bold mb-4">Why Learn Arduino at Kreative Robotics?</h2>
               <p className="text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Our Arduino Masterclass provides the skills to build a huge range of electronic projects. We guide students from the basics of blinking an LED to creating complex interactive devices, fostering a deep understanding of both hardware and software.
+                Our Arduino course provides the skills to build a huge range of electronic projects. We guide students from the basics of blinking an LED to creating complex interactive devices, fostering a deep understanding of both hardware and software.
               </p>
             </div>
           </div>

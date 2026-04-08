@@ -61,8 +61,8 @@ export function Footer() {
             <h4 className="text-lg font-bold mb-6 text-foreground tracking-wider leading-relaxed">Courses</h4>
             <ul className="space-y-3 text-sm text-foreground/80">
               {[
-                { name: 'Robotics Fundamentals', href: '/courses/robotics-fundamentals' },
-                { name: 'Arduino Masterclass', href: '/courses/arduino-masterclass' },
+                { name: 'Robotics', href: '/courses/robotics-fundamentals' },
+                { name: 'Arduino', href: '/courses/arduino-masterclass' },
                 { name: 'IoT Systems', href: '/courses/iot-systems' },
                 { name: 'PCB Designing', href: '/courses/pcb-designing' },
                 { name: '3D Designing', href: '/courses/3d-designing' },

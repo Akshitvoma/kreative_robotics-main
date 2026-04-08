@@ -8,7 +8,7 @@ export default function RoboticsFundamentals() {
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">Robotics Fundamentals</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">Robotics</h1>
             <p className="text-lg md:text-xl text-foreground/80 mb-12 text-center leading-relaxed">
               An introductory course to the exciting world of robotics, designed for beginners with a passion for technology.
             </p>
@@ -22,7 +22,7 @@ export default function RoboticsFundamentals() {
               </div>
               <img
                 src="/RF.jpeg"
-                alt="Robotics Fundamentals"
+                alt="Robotics"
                 className="w-full h-64 object-cover rounded-lg shadow-lg"
               />
             </div>
@@ -60,9 +60,9 @@ export default function RoboticsFundamentals() {
             </div>
 
             <div className="text-center">
-              <h2 className="text-3xl font-bold mb-4">Why Learn Robotics Fundamentals at Kreative Robotics?</h2>
+              <h2 className="text-3xl font-bold mb-4">Why Learn Robotics at Kreative Robotics?</h2>
               <p className="text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Our Robotics Fundamentals course is the perfect starting point for your journey into robotics. We focus on hands-on learning, allowing students to build and program their own robots. It's a fun and engaging way to learn the basics of engineering and programming.
+                Our Robotics course is the perfect starting point for your journey into robotics. We focus on hands-on learning, allowing students to build and program their own robots. It's a fun and engaging way to learn the basics of engineering and programming.
               </p>
             </div>
           </div>
