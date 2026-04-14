@@ -21,14 +21,15 @@ export function ProjectGalleryCard({ project, index = 0 }: { project: ProjectGal
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <div className="relative overflow-hidden rounded-lg aspect-video bg-muted/20">
+      <div className="relative overflow-hidden rounded-lg bg-muted/20">
         <img
           src={project.imageUrl}
           alt={project.title}
-          className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
-            objectFit === 'contain' ? 'object-contain' : 'object-cover'
-          }`}
-          style={{ objectPosition: project.objectPosition || 'center' }}
+          className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+          style={{ 
+            objectPosition: project.objectPosition || 'center',
+            objectFit: project.objectFit || 'cover'
+          }}
         />
         {project.videoUrl && (
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
