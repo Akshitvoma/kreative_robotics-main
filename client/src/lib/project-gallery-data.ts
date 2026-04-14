@@ -18,7 +18,8 @@ export const projectGalleryData: ProjectLevel[] = [
     name: 'Funtronix',
     path: '/level-1-projects',
     projects: [
-      { title: 'Project 1.1', imageUrl: '/Level 1.JPG', objectPosition: 'top' },
+      { title: 'Project 1.1', imageUrl: '/Level 1.jpeg' },
+      { title: 'Project 1.1', imageUrl: '/Level 1.JPG' },
       { title: 'Project 1.2', imageUrl: '/Level 1.1.JPG' },
       { title: 'Project 1.3', imageUrl: '/Level 1.2.JPG' },
     ],
@@ -67,6 +68,7 @@ export const projectGalleryData: ProjectLevel[] = [
     path: '/level-6-projects',
     projects: [
       { title: 'Project 6.1', imageUrl: '/Level 6.JPG' },
+      { title: 'Project 6.1', imageUrl: '/Level 6.1.jpeg' },
     ],
   },
   {
