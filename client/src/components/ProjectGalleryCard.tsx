@@ -19,7 +19,7 @@ export function ProjectGalleryCard({ project, index = 0 }: { project: ProjectGal
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      className="group break-inside-avoid mb-8 md:mb-12"
     >
       <div className="relative overflow-hidden rounded-lg bg-muted/20">
         <img
