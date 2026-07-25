@@ -21,7 +21,7 @@ export function Footer() {
             <div className="flex gap-4">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/kreativerobotics/" },
-                { Icon: Instagram, href: "https://www.instagram.com/kreative_robotics/" },
+                { Icon: Instagram, href: "https://www.instagram.com/kreative.robotics/#" },
                 { Icon: Youtube, href: "https://www.youtube.com/@kreativeroboticsobotzwarangal" },
                 { Icon: FaWhatsapp, href: "https://wa.me/9121900667" },
                 { Icon: FaLinkedin, href: "https://www.linkedin.com/in/kreative-robotics-obotz-warangal-6748a3321/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bb%2BfK%2F%2B4mS7Ku1N0uWE9k0g%3D%3D" },
