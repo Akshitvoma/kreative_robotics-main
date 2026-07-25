@@ -98,9 +98,16 @@ export default function Contact() {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg mb-1 text-foreground tracking-wider">Visit Us</h3>
-                  <p className="text-foreground/80">15-1-44,Srinivasa colony, eye hospital line, Opposite-MGM, Warangal, Telangana</p>
+                <div className="space-y-3">
+                  <h3 className="font-bold text-lg text-foreground tracking-wider">Visit Us</h3>
+                  <div>
+                    <span className="font-semibold text-primary block text-sm">Warangal Branch</span>
+                    <p className="text-foreground/80">15-1-44,Srinivasa colony, eye hospital line, Opposite-MGM, Warangal, Telangana</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-primary block text-sm">Hyderabad Branch</span>
+                    <p className="text-foreground/80">Kreative Robotics offline centre-Hyd, Ground floor, club house, Vasavi Brindavan, Moti nagar, Hyderabad 500018</p>
+                  </div>
                 </div>
               </div>
 
