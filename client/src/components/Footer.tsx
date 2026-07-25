@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Cpu, Facebook, Instagram, Youtube, Mail, MapPin, Phone } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa6";
+import { FaWhatsapp, FaLinkedin } from "react-icons/fa6";
 
 export function Footer() {
   return (
@@ -24,6 +24,7 @@ export function Footer() {
                 { Icon: Instagram, href: "https://www.instagram.com/kreative_robotics/" },
                 { Icon: Youtube, href: "https://www.youtube.com/@kreativeroboticsobotzwarangal" },
                 { Icon: FaWhatsapp, href: "https://wa.me/9121900667" },
+                { Icon: FaLinkedin, href: "https://www.linkedin.com/in/kreative-robotics-obotz-warangal-6748a3321/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bb%2BfK%2F%2B4mS7Ku1N0uWE9k0g%3D%3D" },
               ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
@@ -80,8 +81,12 @@ export function Footer() {
             <h4 className="text-lg font-bold mb-6 text-foreground tracking-wider leading-relaxed">Contact Us</h4>
             <ul className="space-y-4 text-sm text-foreground/80">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-primary shrink-0" />
+                <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <span>15-1-44,Srinivasa colony, eye hospital line, Opposite-MGM, Warangal, Telangana</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Kreative Robotics offline centre-Hyd, Ground floor, club house, Vasavi Brindavan, Moti nagar, Hyderabad 500018</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
