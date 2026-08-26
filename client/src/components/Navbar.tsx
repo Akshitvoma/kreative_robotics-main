@@ -67,7 +67,7 @@ export function Navbar() {
               KREATIVE <span className="text-primary">ROBOTICS</span>
             </span>
             <span className="text-[10px] md:text-xs text-foreground/60 tracking-wider font-medium whitespace-nowrap hidden min-[400px]:block leading-tight">
-              Obotz Warangal
+              Obotz Warangal & Hyderabad
             </span>
           </div>
         </Link>

@@ -13,7 +13,7 @@ export function Footer() {
               <span className="font-display font-bold text-xl tracking-tight">
                 KREATIVE <span className="text-primary">ROBOTICS</span>
               </span>
-              <span className="text-xs text-foreground/80 -mt-1 leading-relaxed">Obotz Warangal</span>
+              <span className="text-xs text-foreground/80 -mt-1 leading-relaxed">Obotz Warangal & Hyderabad</span>
             </Link>
             <p className="text-foreground/80 text-sm leading-relaxed">
               Empowering the next generation of innovators through hands-on robotics and IoT education.
